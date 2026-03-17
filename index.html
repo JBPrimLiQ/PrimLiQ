@@ -144,6 +144,57 @@
             h1 { font-size: 1.8rem; }
             #primal-action-btn { right: 15px; bottom: 15px; width: calc(100% - 30px); text-align: center; }
         }
+
+        .vault-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            border: 1px solid rgba(0, 206, 206, 0.2);
+            border-radius: 12px;
+            background: rgba(0, 206, 206, 0.02);
+            text-align: center;
+        }
+
+        .vault-form {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .vault-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            color: #fff;
+            font-family: inherit;
+        }
+
+        .vault-input:focus {
+            outline: none;
+            border-color: var(--prim-teal);
+        }
+
+        .vault-btn {
+            padding: 12px 25px;
+            background: var(--prim-teal);
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .vault-btn:hover {
+            background: #fff;
+            box-shadow: 0 0 15px rgba(0, 206, 206, 0.4);
+        }
+        
     </style>
 </head>
 <body>
@@ -202,6 +253,21 @@
             <p style="font-size: 0.85rem; color:#888;">Bespoke Notion or CLI builds.</p>
             <a href="contact.html" target="_blank" rel="noopener noreferrer" class="btn" style="padding: 8px 15px; font-size: 0.7rem; margin-top: 10px;">Inquire Here</a>
         </div>
+
+        <!-- JOIN THE VAULT (LEAD CAPTURE) -->
+    <div class="section-title">The Primal Vault</div>
+    <div class="vault-container">
+        <p style="color: #888; font-size: 0.85rem; margin-bottom: 20px;">
+            Get high-level tactical updates, exclusive Notion templates, and the "Alpha Series" roadmap.
+        </p>
+        <!-- Formspree ID: meerpnnq (Reusing your ID for now) -->
+        <form action="https://formspree.io/f/meerpnnq" method="POST" class="vault-form">
+            <input type="hidden" name="_subject" value="NEW VAULT SUBSCRIBER">
+            <input type="email" name="email" class="vault-input" placeholder="ENTER EMAIL FOR ACCESS" required>
+            <button type="submit" class="vault-btn">JOIN THE VAULT</button>
+        </form>
+    </div>
+
     </div>
 
     <!-- SOCIALS -->
