@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inquiry | PrimLiQ</title>
+    <!-- We link the SAME styles so the background and fonts match perfectly -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* This pulls from your main CSS variables */
+        :root {
+            --prim-teal: #00cece;
+            --dark-bg: #0d0f10;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            background-image: radial-gradient(circle at 50% 20%, #1a1e22 0%, #0d0f10 100%);
+            color: #d1d1d1;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        .contact-box {
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        h2 { color: #fff; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 30px; }
+
+        .input-field {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+            border-radius: 4px;
+            color: #fff;
+            box-sizing: border-box;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--prim-teal);
+            box-shadow: 0 0 10px rgba(0, 206, 206, 0.2);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #fff;
+            color: #000;
+            border: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: var(--prim-teal);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(0, 206, 206, 0.4);
+        }
+
+        .back-btn {
+            display: block;
+            margin-top: 20px;
+            color: #555;
+            text-decoration: none;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+        }
+
+        .back-btn:hover { color: var(--prim-teal); }
+    </style>
+</head>
+<body>
+
+    <div class="contact-box">
+        <h2>Initiate Inquiry</h2>
+        <form action="https://formspree.io/f/YOUR_ID_HERE" method="POST">
+            <input type="text" name="name" class="input-field" placeholder="FULL NAME" required>
+            <input type="email" name="email" class="input-field" placeholder="EMAIL ADDRESS" required>
+            <textarea name="message" class="input-field" rows="5" placeholder="REASON FOR INQUIRY" required></textarea>
+            <button type="submit" class="submit-btn">SUBMIT TO PRIMLIQ</button>
+        </form>
+        <a href="index.html" class="back-btn">← RETURN TO MISSION</a>
+    </div>
+
+</body>
+</html>
