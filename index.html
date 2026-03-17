@@ -14,7 +14,15 @@
             flex-direction: column;
             align-items: center;
             padding: 50px 20px;
+            /* Animation for page load */
+            animation: fadeIn 1.2s ease-in-out;
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .container {
             padding: 40px;
             border: 1px solid #333;
@@ -23,9 +31,11 @@
             max-width: 600px;
             text-align: center;
             margin-bottom: 30px;
+            transition: border 0.3s ease;
         }
         
-        /* Profile Photo Circle */
+        .container:hover { border-color: #555; }
+
         .profile-img {
             width: 120px;
             height: 120px;
@@ -33,11 +43,13 @@
             border: 2px solid #fff;
             margin-bottom: 20px;
             object-fit: cover;
-            background-color: #333; /* Dark gray until you add a photo */
+            background-color: #333;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
+        .profile-img:hover { transform: scale(1.1); }
+
         h1 { color: #ffffff; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 10px; }
-        .tagline { font-style: italic; color: #888; margin-bottom: 25px; font-size: 0.9rem; }
         
         .btn {
             display: inline-block;
@@ -47,29 +59,14 @@
             text-decoration: none;
             font-weight: bold;
             border-radius: 5px;
-            transition: 0.3s;
-        }
-        .btn:hover { background: #cccccc; transform: translateY(-2px); }
-
-        .section-title {
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 1rem;
-            margin: 40px 0 20px 0;
-            color: #fff;
-            border-bottom: 1px solid #333;
-            width: 100%;
-            max-width: 600px;
-            padding-bottom: 10px;
-            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 0 rgba(255,255,255,0);
         }
 
-        .philosophy-text {
-            max-width: 600px;
-            line-height: 1.8;
-            color: #b0b0b0;
-            text-align: center;
-            margin-bottom: 40px;
+        .btn:hover { 
+            background: #f0f0f0; 
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
         }
 
         .services {
@@ -79,13 +76,20 @@
             max-width: 600px;
             width: 100%;
         }
+
         .service-card {
             padding: 20px;
             border: 1px solid #222;
             background: rgba(255, 255, 255, 0.01);
             border-radius: 8px;
+            transition: all 0.3s ease;
         }
-        .service-card h3 { color: #fff; margin-top: 0; font-size: 0.9rem; letter-spacing: 1px; }
+
+        .service-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: #444;
+            transform: translateY(-5px);
+        }
     </style>
 </head>
 <body>
