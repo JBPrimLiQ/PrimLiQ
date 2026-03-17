@@ -3,152 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PrimLiQ | Alpha Identity</title>
+    <title>PrimLiQ | Primal Drive. IQ Executed.</title>
     <style>
         :root {
-            --prim-teal: #00b4b4; /* Matching the logo teal */
-            --prim-silver: #c0c0c0;
-            --dark-bg: #121416;
+            --prim-teal: #00cece;
+            --prim-silver: #a8a8a8;
+            --dark-bg: #0d0f10;
         }
 
         body {
-            background: radial-gradient(circle at center, #1c1f22 0%, #0a0b0c 100%);
-            color: #e0e0e0;
-            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--dark-bg);
+            background-image: radial-gradient(circle at 50% 20%, #1a1e22 0%, #0d0f10 100%);
+            color: #d1d1d1;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 40px 20px;
-            animation: fadeIn 1.5s ease;
+            padding: 60px 20px;
+            animation: fadeIn 1.5s ease-out;
         }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         .container {
             padding: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px;
             background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(10px);
-            max-width: 700px;
+            backdrop-filter: blur(12px);
+            max-width: 650px;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            margin-bottom: 40px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            transition: all 0.4s ease;
+        }
+        
+        .container:hover {
+            border-color: var(--prim-teal);
+            box-shadow: 0 0 30px rgba(0, 206, 206, 0.15);
         }
 
-        /* Logo Styling */
-        .logo-main {
-            width: 180px; /* Adjust based on your logo shape */
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 10px rgba(0, 180, 180, 0.3));
+        .logo-img {
+            width: 160px; /* Adjusted for your new logo shape */
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 8px rgba(0, 206, 206, 0.4));
         }
 
         h1 { 
             color: #ffffff; 
-            letter-spacing: 8px; 
+            letter-spacing: 6px; 
             text-transform: uppercase; 
-            margin: 10px 0;
+            margin-bottom: 5px;
             font-size: 2.2rem;
+            font-weight: 800;
         }
 
         .tagline { 
             color: var(--prim-teal); 
-            font-weight: bold;
             letter-spacing: 2px;
             text-transform: uppercase;
-            font-size: 0.8rem;
-            margin-bottom: 30px;
+            font-weight: 700;
+            margin-bottom: 30px; 
+            font-size: 0.75rem; 
         }
-
+        
         .btn {
             display: inline-block;
-            padding: 15px 40px;
-            background: linear-gradient(135deg, #ffffff 0%, #d1d1d1 100%);
-            color: #000 !important;
+            padding: 16px 40px;
+            background: linear-gradient(135deg, #ffffff 0%, #a8a8a8 100%);
+            color: #000000 !important;
             text-decoration: none;
             font-weight: 900;
             border-radius: 4px;
-            transition: 0.4s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
             letter-spacing: 2px;
-            border: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
         .btn:hover { 
             background: var(--prim-teal);
-            color: #fff !important;
+            color: #ffffff !important;
             transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0, 180, 180, 0.6);
+            box-shadow: 0 0 20px rgba(0, 206, 206, 0.5);
         }
 
         .section-title {
-            color: var(--prim-silver);
             text-transform: uppercase;
-            letter-spacing: 4px;
-            font-size: 0.75rem;
-            margin-top: 60px;
-            border-bottom: 1px solid #333;
+            letter-spacing: 5px;
+            font-size: 0.8rem;
+            margin: 60px 0 30px 0;
+            color: var(--prim-silver);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             width: 100%;
-            max-width: 700px;
-            padding-bottom: 10px;
+            max-width: 650px;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+
+        .philosophy-text {
+            max-width: 600px;
+            line-height: 1.8;
+            color: #a0a0a0;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.05rem;
         }
 
         .services {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 25px;
-            max-width: 700px;
-            margin-top: 30px;
+            max-width: 650px;
+            width: 100%;
         }
 
         .service-card {
             padding: 30px;
-            background: linear-gradient(145deg, #16181b, #1c1f22);
-            border-left: 3px solid var(--prim-teal);
-            border-radius: 8px;
-            text-align: left;
-            transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.01);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .service-card:hover { transform: translateY(-5px); background: #1f2327; }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px; height: 100%;
+            background: var(--prim-teal);
+            opacity: 0.5;
+        }
 
-        .service-card h3 { color: #fff; font-size: 0.9rem; margin-top: 0; }
-        
-        .footer {
-            margin-top: 80px;
-            font-size: 0.65rem;
-            color: #444;
-            letter-spacing: 3px;
+        .service-card:hover {
+            background: rgba(0, 206, 206, 0.03);
+            border-color: var(--prim-teal);
+            transform: translateY(-8px);
+        }
+
+        .service-card h3 { 
+            color: #fff; 
+            margin-top: 0; 
+            font-size: 0.85rem; 
+            letter-spacing: 2px; 
+            text-transform: uppercase;
+        }
+
+        .footer-note { 
+            font-size: 0.7rem; 
+            color: #444; 
+            margin-top: 80px; 
+            letter-spacing: 3px; 
+            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <img src="logo.png" alt="PrimLiQ Logo" class="logo-main">
-        <h1>PRIMLIQ</h1>
-        <div class="tagline">Primal Drive. Unique Edge. IQ Executed.</div>
-        
-        <p style="color: #bbb; line-height: 1.6; font-style: italic;">
-            The definitive fusion of instinct and intellect. 
-            Built on a Primal foundation of raw drive, we empower your identity through strategic precision.
-        </p>
-
+        <img src="logo.png" alt="PrimLiQ Logo" class="logo-img">
+        <h1>PrimLiQ</h1>
+        <p class="tagline">Primal Drive. Unique Edge. IQ Executed.</p>
         <a href="mailto:JBworkamazing@gmail.com" class="btn">GET IN TOUCH</a>
     </div>
 
-    <div class="section-title">Operational Pillars</div>
+    <div class="section-title">The Mission</div>
+    <p class="philosophy-text">
+        Modern brilliance is hollow without ancestral drive. PrimLiQ bridges the gap—combining the <span style="color:var(--prim-teal)">raw, guttural instinct</span> to succeed with the <span style="color:#fff">cold, calculated precision</span> of high-level strategy.
+    </p>
+
+    <div class="section-title">The Methodology</div>
     <div class="services">
         <div class="service-card">
-            <h3>INSTINCT</h3>
-            <p style="font-size: 0.8rem; color: #888;">Harnessing raw primal energy to drive foundational growth and momentum.</p>
+            <h3>PHASE 1: INSTINCT</h3>
+            <p style="font-size: 0.85rem; color:#888;">Uncovering raw potential and removing the friction that slows your momentum.</p>
         </div>
         <div class="service-card">
-            <h3>INTELLECT</h3>
-            <p style="font-size: 0.8rem; color: #888;">High-level strategic execution and psychological precision in every move.</p>
+            <h3>PHASE 2: INTELLECT</h3>
+            <p style="font-size: 0.85rem; color:#888;">Applying strategic precision to ensure your drive is focused and unbeatable.</p>
         </div>
     </div>
 
-    <div class="footer">PRIMLIQ ALPHA SERIES © 2026</div>
+    <div class="footer-note">© 2026 PRIMLIQ | ALPHA SERIES</div>
 
 </body>
 </html>
