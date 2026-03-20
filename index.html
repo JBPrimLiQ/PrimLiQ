@@ -41,7 +41,7 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
-    /* --- NAVIGATION MASCOT --- */
+    /* --- NAVIGATION MASCOT (VIDEO SUPPORT) --- */
     .nav-mascot {
         position: fixed;
         bottom: 30px;
@@ -52,6 +52,7 @@
         animation: floatMascot 4s ease-in-out infinite;
         pointer-events: none;
         transition: 0.5s ease;
+        object-fit: contain; /* Ensures video scaling is clean */
     }
 
     @keyframes floatMascot {
@@ -74,7 +75,6 @@
         overflow: hidden;
     }
 
-    /* Animated scanning line for the card */
     .branding-card::after {
         content: '';
         position: absolute; top: -100%; left: 0; width: 100%; height: 100%;
@@ -100,7 +100,6 @@
         filter: drop-shadow(0 0 25px rgba(0, 206, 206, 0.8));
     }
 
-    /* --- HUD & TOP NAV (Consistent with image glow) --- */
     .nav-logo { 
         font-weight: 900; letter-spacing: 5px; color: #fff; text-decoration: none; font-size: 1.1rem; 
         text-shadow: 0 0 10px rgba(0, 206, 206, 0.8);
@@ -195,8 +194,10 @@
 </head>
 <body>
 
-    <!-- MASCOT COMPANION (Add this to all tabs) -->
-    <img src="mascot.png" alt="PrimLiQ Mascot" class="nav-mascot">
+    <!-- MASCOT COMPANION (Changed to Video) -->
+    <video autoplay loop muted playsinline class="nav-mascot">
+        <source src="mascot.mp4" type="video/mp4">
+    </video>
 
     <div class="side-hud hud-left">
         <div class="hud-line">System.Status: Active</div>
@@ -211,21 +212,24 @@
     </div>
 
     <nav class="top-nav">
-        <!-- Home Button Links to main site - New Tab protocol -->
-        <a href="https://primliq.github.io/PLQ/" class="nav-logo" target="_blank">PrimLiQ</a>
+        <!-- Home Button Links to main site (Removed target="_blank") -->
+        <a href="https://primliq.github.io/PLQ/" class="nav-logo">PrimLiQ</a>
+
         <div class="nav-search-container">
             <input type="text" class="nav-search-input" placeholder="SEARCH DATABASE..." id="armorySearch">
         </div>
+
         <div class="nav-links">
-            <a href="about.html" class="nav-item" target="_blank" rel="noopener noreferrer">About</a>
-            <a href="assets.html" class="nav-item highlight" target="_blank" rel="noopener noreferrer">Armory</a>
-            <a href="contact.html" class="nav-item" target="_blank" rel="noopener noreferrer">Contact</a>
+            <a href="about.html" class="nav-item">About</a>
+            <a href="assets.html" class="nav-item highlight">Armory</a>
+            <a href="contact.html" class="nav-item">Contact</a>
         </div>
     </nav>
 
     <div class="branding-card" id="main-portal">
         <img src="logo.png" alt="PrimLiQ Logo" class="logo-img">
-        <a href="contact.html" class="btn" target="_blank" rel="noopener noreferrer">GET IN TOUCH</a>
+        <!-- target="_blank" removed -->
+        <a href="contact.html" class="btn">GET IN TOUCH</a>
     </div>
 
     <div class="section-title">The Mission</div>
@@ -259,7 +263,8 @@
             <span style="color: var(--prim-teal); font-weight: bold; font-size: 0.7rem;">COLLECTION</span>
             <h3>THE ARMORY</h3>
             <p style="font-size: 0.85rem; color:#888;">Explore our master vault of gamified systems and Notion templates.</p>
-            <a href="assets.html" target="_blank" rel="noopener noreferrer" class="btn" style="padding: 8px 15px; font-size: 0.7rem; margin-top: 10px;">ENTER THE ARMORY</a>
+            <!-- target="_blank" removed -->
+            <a href="assets.html" class="btn" style="padding: 8px 15px; font-size: 0.7rem; margin-top: 10px;">ENTER THE ARMORY</a>
         </div>
         <div class="service-card">
             <div style="width:100%; height:150px; background: rgba(255,255,255,0.05); border-radius:8px; margin-bottom:15px; display:flex; align-items:center; justify-content:center; border:1px dashed #333;">
@@ -268,7 +273,8 @@
             <span style="color: var(--prim-teal); font-weight: bold; font-size: 0.7rem;">INTELLECT</span>
             <h3>Custom Automations</h3>
             <p style="font-size: 0.85rem; color:#888;">Bespoke Notion or CLI builds.</p>
-            <a href="contact.html" target="_blank" rel="noopener noreferrer" class="btn" style="padding: 8px 15px; font-size: 0.7rem; margin-top: 10px;">Inquire Here</a>
+            <!-- target="_blank" removed -->
+            <a href="contact.html" class="btn" style="padding: 8px 15px; font-size: 0.7rem; margin-top: 10px;">Inquire Here</a>
         </div>
     </div>
 
@@ -284,12 +290,13 @@
     </div>
 
     <div class="social-links">
-        <a href="https://facebook.com/PrimLiQ/" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://instagram.com/jbworkamazing/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-        <a href="https://tiktok.com/@primliq" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
+        <a href="https://facebook.com/PrimLiQ/"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://instagram.com/jbworkamazing/"><i class="fab fa-instagram"></i></a>
+        <a href="https://tiktok.com/@primliq"><i class="fab fa-tiktok"></i></a>
     </div>
 
-    <a href="contact.html" id="primal-action-btn" target="_blank" rel="noopener noreferrer" class="btn">GET IN TOUCH</a>
+    <!-- Floating button target removed -->
+    <a href="contact.html" id="primal-action-btn" class="btn">GET IN TOUCH</a>
 
     <div class="footer-note">© 2026 PRIMLIQ | ALPHA SERIES | EST. 2024</div>
 
@@ -302,7 +309,6 @@
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     actionBtn.classList.toggle("is-visible", !entry.isIntersecting);
-                    // Mascot reacts to scrolling past the branding card
                     mascot.style.opacity = entry.isIntersecting ? "1" : "0.7";
                     mascot.style.transform = entry.isIntersecting ? "scale(1)" : "scale(0.8)";
                 });
@@ -312,19 +318,22 @@
             const searchInput = document.getElementById('armorySearch');
             const cards = document.querySelectorAll('.service-card');
 
-            // Opens results in new tab if Enter is pressed
+            // Opens results in SAME window (Removed window.open)
             searchInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
-                    window.open('assets.html?search=' + searchInput.value, '_blank');
+                    window.location.href = 'assets.html?search=' + searchInput.value;
                 }
             });
 
             searchInput.addEventListener('input', (e) => {
                 const value = e.target.value.toLowerCase();
                 cards.forEach(card => {
-                    const title = card.querySelector('h3').innerText.toLowerCase();
-                    const desc = card.querySelector('p').innerText.toLowerCase();
-                    card.style.display = (title.includes(value) || desc.includes(value)) ? "block" : "none";
+                    const h3 = card.querySelector('h3');
+                    if(h3) {
+                        const title = h3.innerText.toLowerCase();
+                        const desc = card.querySelector('p').innerText.toLowerCase();
+                        card.style.display = (title.includes(value) || desc.includes(value)) ? "block" : "none";
+                    }
                 });
             });
         });
