@@ -81,4 +81,125 @@
         .status-tag {
             font-size: 0.6rem;
             background: rgba(0, 206, 206, 0.1);
-            color: var(--prim-
+            color: var(--prim-teal);
+            padding: 4px 10px;
+            letter-spacing: 2px;
+            font-weight: bold;
+            border-radius: 2px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border: 1px solid var(--prim-teal);
+            object-fit: cover;
+            filter: grayscale(1) contrast(1.2);
+            margin-bottom: 20px;
+        }
+
+        .dossier-content h3 {
+            color: var(--prim-teal);
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 30px;
+        }
+
+        .dossier-content p {
+            line-height: 1.8;
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        .data-point {
+            display: flex;
+            margin-bottom: 10px;
+            font-size: 0.8rem;
+        }
+
+        .label { color: #555; width: 120px; text-transform: uppercase; font-weight: bold; }
+        .value { color: #fff; letter-spacing: 1px; }
+
+        .footer-note {
+            margin-top: auto;
+            padding-bottom: 40px;
+            font-size: 0.6rem;
+            color: #333;
+            letter-spacing: 4px;
+        }
+
+        @media (max-width: 600px) {
+            .dossier-header { flex-direction: column; gap: 20px; }
+            .dossier-container { padding: 20px; }
+        }
+
+        .nav-logo { 
+        font-weight: 900; 
+        letter-spacing: 5px; 
+        color: #fff; 
+        text-decoration: none; 
+        font-size: 1.1rem; 
+        flex-shrink: 0; 
+        text-shadow: 0 0 10px rgba(0, 206, 206, 0.8), 0 0 20px rgba(0, 206, 206, 0.4);
+        transition: 0.3s ease;
+        }
+
+.nav-logo:hover {
+    color: var(--prim-teal);
+    text-shadow: 0 0 15px rgba(0, 206, 206, 1), 0 0 30px rgba(0, 206, 206, 0.6);
+}
+    </style>
+</head>
+<body>
+
+    <nav class="top-nav">
+        <a href="index.html" class="nav-logo">PrimLiQ</a>
+        <div class="nav-links">
+            <a href="about.html" class="nav-item" style="color: var(--prim-teal);">About</a>
+            <a href="assets.html" class="nav-item highlight">The Armory</a>
+            <a href="contact.html" class="nav-item">Contact</a>
+        </div>
+    </nav>
+
+    <div class="dossier-container">
+        <div class="dossier-header">
+            <div class="subject-info">
+                <span class="status-tag">ACTIVE AGENT // ALPHA SERIES</span>
+                <h1>Architect Bio</h1>
+                <div style="margin-top: 15px;">
+                    <div class="data-point"><span class="label">ID:</span> <span class="value">PLQ-001</span></div>
+                    <div class="data-point"><span class="label">ROLE:</span> <span class="value">System Architect</span></div>
+                    <div class="data-point"><span class="label">HEIGHT:</span> <span class="value">6'0"</span></div>
+                    <div class="data-point"><span class="label">LOC:</span> <span class="value">PrimLiQ Laboratory</span></div>
+                </div>
+            </div>
+            <!-- Replace with your actual photo path -->
+            <img src="profile.png" alt="Architect" class="profile-img">
+        </div>
+
+        <div class="dossier-content">
+            <h3>Mission Objective</h3>
+            <p>
+                Most individuals are losing a silent war against digital noise. Hidden subscriptions, fragmented focus, and cluttered workspaces are the "ghosts" draining human potential. My objective is to bridge the gap—combining raw instinct with calculated precision.
+            </p>
+
+            <h3>Core Philosophy</h3>
+            <p>
+                Modern brilliance is hollow without ancestral drive. I build high-performance systems for those who refuse to settle for average workflows. By combining deep-level Notion architecture with gamified "Hero Quests," I help professionals reclaim their mental landscape and slay the friction that holds them back.
+            </p>
+
+            <h3>The Armory</h3>
+            <p>
+                Through PrimLiQ, I provide the tactical tools necessary to dominate the digital age. Whether it's the <strong>Prim Zen Dashboard</strong> or bespoke automation builds, every asset is designed for one purpose: IQ Executed.
+            </p>
+        </div>
+        
+        <div style="margin-top: 40px; border-top: 1px dashed #222; padding-top: 20px;">
+            <a href="index.html" style="color: var(--prim-teal); text-decoration: none; font-size: 0.7rem; letter-spacing: 2px;">[ RETURN TO MAIN INTERFACE ]</a>
+        </div>
+    </div>
+
+    <div class="footer-note">© 2026 PRIMLIQ | PERSONNEL RECORD | EST. 2024</div>
+
+</body>
+</html>
