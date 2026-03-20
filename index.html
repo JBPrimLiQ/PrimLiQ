@@ -19,7 +19,6 @@
 
     body {
         background-color: var(--dark-bg);
-        /* Technical Grid + Radial Shadow Background */
         background-image: 
             radial-gradient(circle at 50% 20%, #1a1e22 0%, #0d0f10 100%),
             linear-gradient(to right, rgba(0, 206, 206, 0.02) 1px, transparent 1px),
@@ -41,33 +40,16 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
-    /* --- SIDE SCREEN HUD (Fills Blank Sides) --- */
+    /* --- SIDE SCREEN HUD --- */
     .side-hud {
-        position: fixed;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 120px;
-        height: 400px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 20px;
-        pointer-events: none;
-        z-index: 10;
-        opacity: 0.3;
+        position: fixed; top: 50%; transform: translateY(-50%);
+        width: 120px; height: 400px; display: flex; flex-direction: column;
+        justify-content: space-between; padding: 20px; pointer-events: none;
+        z-index: 10; opacity: 0.3;
     }
-
     .hud-left { left: 40px; border-left: 1px solid var(--prim-teal); }
     .hud-right { right: 40px; border-right: 1px solid var(--prim-teal); text-align: right; }
-
-    .hud-line {
-        font-size: 0.6rem;
-        letter-spacing: 3px;
-        color: var(--prim-teal);
-        text-transform: uppercase;
-        font-weight: 900;
-        margin-bottom: 10px;
-    }
+    .hud-line { font-size: 0.6rem; letter-spacing: 3px; color: var(--prim-teal); text-transform: uppercase; font-weight: 900; }
 
     /* --- TOP NAVIGATION --- */
     .top-nav {
@@ -79,19 +61,13 @@
     }
 
     .nav-logo { font-weight: 900; letter-spacing: 3px; color: #fff; text-decoration: none; font-size: 1rem; flex-shrink: 0; }
-
-    .nav-search-container {
-        position: relative; flex-grow: 1; max-width: 400px; margin: 0 30px;
-    }
-
+    .nav-search-container { position: relative; flex-grow: 1; max-width: 400px; margin: 0 30px; }
     .nav-search-input {
         width: 100%; padding: 8px 15px 8px 35px; background: var(--glass);
         border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px;
         color: #fff; font-size: 0.8rem; transition: all 0.3s ease;
     }
-
-    .nav-search-input:focus { outline: none; border-color: var(--prim-teal); background: rgba(0, 206, 206, 0.05); box-shadow: 0 0 15px rgba(0, 206, 206, 0.1); }
-
+    .nav-search-input:focus { outline: none; border-color: var(--prim-teal); background: rgba(0, 206, 206, 0.05); }
     .nav-search-container::before {
         content: '\f002'; font-family: "Font Awesome 5 Free"; font-weight: 900;
         position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
@@ -110,7 +86,6 @@
         text-align: center; margin-bottom: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.5);
         display: flex; flex-direction: column; align-items: center; box-sizing: border-box;
     }
-
     .logo-img { width: 320px; max-width: 100%; margin-bottom: 30px; filter: drop-shadow(0 0 15px rgba(0, 206, 206, 0.3)); }
     
     h1, .tagline { display: none; }
@@ -121,7 +96,6 @@
         color: #000 !important; text-decoration: none; font-weight: 900; border-radius: 4px;
         transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); text-transform: uppercase; letter-spacing: 2px;
     }
-
     .btn:hover { background: var(--prim-teal); color: #fff !important; transform: scale(1.05); box-shadow: 0 0 20px rgba(0, 206, 206, 0.5); }
 
     .section-title {
@@ -129,23 +103,21 @@
         color: var(--prim-silver); border-bottom: 1px solid rgba(255, 255, 255, 0.1); width: 100%; max-width: 650px; padding-bottom: 15px; text-align: center;
     }
 
-    .philosophy-text { max-width: 600px; line-height: 1.8; color: #a0a0a0; text-align: center; margin-bottom: 30px; font-size: 1.05rem; }
+    .philosophy-text { max-width: 600px; line-height: 1.8; color: #a0a0a0; text-align: center; margin-bottom: 30px; }
     .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 850px; width: 100%; }
     
     .service-card {
         padding: 30px; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(255, 255, 255, 0.01);
         border-radius: 12px; transition: 0.3s ease; position: relative; overflow: hidden;
     }
-
     .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--prim-teal); opacity: 0.5; }
-    .service-card:hover { background: rgba(0, 206, 206, 0.03); border-color: var(--prim-teal); transform: translateY(-8px); }
+    .service-card:hover { border-color: var(--prim-teal); transform: translateY(-8px); }
     .service-card h3 { color: #fff; margin-top: 10px; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; }
 
     .vault-container {
         max-width: 600px; margin: 40px auto; padding: 30px; border: 1px solid rgba(0, 206, 206, 0.2);
         border-radius: 12px; background: rgba(0, 206, 206, 0.02); text-align: center;
     }
-
     .vault-form { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
     .vault-input { flex: 1; min-width: 200px; padding: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 4px; color: #fff; }
     .vault-btn { padding: 12px 25px; background: var(--prim-teal); color: #000; border: none; border-radius: 4px; font-weight: 900; cursor: pointer; transition: 0.3s; }
@@ -168,72 +140,53 @@
 </head>
 <body>
 
-    <!-- HUD ELEMENTS (Fills horizontal space) -->
     <div class="side-hud hud-left">
-        <div class="hud-line">System.Status: Active</div>
-        <div class="hud-line">PLQ_Core_v2.0</div>
-        <div class="hud-line">BndW: Optimized</div>
+        <div class="hud-line">Status.Active</div>
+        <div class="hud-line">PLQ_Core_v2</div>
     </div>
-
     <div class="side-hud hud-right">
-        <div class="hud-line">Logic.Execute</div>
-        <div class="hud-line">Primal.Instinct</div>
+        <div class="hud-line">Logic.Run</div>
         <div class="hud-line">Alpha.2026</div>
     </div>
 
-    <!-- NAVIGATION -->
     <nav class="top-nav">
         <a href="https://primliq.github.io/PLQ/" class="nav-logo">PrimLiQ</a>
         <div class="nav-search-container">
             <input type="text" class="nav-search-input" placeholder="SEARCH ASSETS..." id="armorySearch">
         </div>
         <div class="nav-links">
-            <a href="about.html" class="nav-item">About</a>
-            <a href="assets.html" class="nav-item highlight">Armory</a>
-            <a href="contact.html" class="nav-item">Contact</a>
+            <a href="about.html" class="nav-item" target="_blank" rel="noopener noreferrer">About</a>
+            <a href="assets.html" class="nav-item highlight" target="_blank" rel="noopener noreferrer">Armory</a>
+            <a href="contact.html" class="nav-item" target="_blank" rel="noopener noreferrer">Contact</a>
         </div>
     </nav>
 
-    <!-- CORE INTERFACE CARD -->
     <div class="branding-card" id="main-portal">
         <img src="logo.png" alt="PrimLiQ Logo" class="logo-img">
         <a href="contact.html" class="btn" target="_blank" rel="noopener noreferrer">GET IN TOUCH</a>
     </div>
 
-    <!-- MISSION -->
-    <div class="section-title">The Mission</div>
-    <p class="philosophy-text">
-        Modern brilliance is hollow without ancestral drive. PrimLiQ bridges the gap—combining the <span style="color:var(--prim-teal)">raw, guttural instinct</span> to succeed with the <span style="color:#fff">cold, calculated precision</span> of high-level strategy.
-    </p>
-
-    <!-- ROADMAP -->
     <div class="section-title">The Roadmap</div>
     <div class="services">
         <div class="service-card">
             <span style="color: var(--prim-teal); font-weight: bold; font-size: 0.7rem;">01. AUDIT</span>
             <h3>INSTINCT</h3>
-            <p style="font-size: 0.85rem; color:#888;">Identifying raw strengths and stripping noise that limits your potential.</p>
+            <p style="font-size: 0.85rem; color:#888;">Identifying raw strengths.</p>
         </div>
         <div class="service-card">
             <span style="color: var(--prim-teal); font-weight: bold; font-size: 0.7rem;">02. STRATEGY</span>
             <h3>INTELLECT</h3>
-            <p style="font-size: 0.85rem; color:#888;">Designing tactical frameworks to channel energy into execution.</p>
-        </div>
-        <div class="service-card" style="grid-column: span 2;">
-            <span style="color: var(--prim-teal); font-weight: bold; font-size: 0.7rem;">03. RESULT</span>
-            <h3>DOMINANCE</h3>
-            <p style="font-size: 0.85rem; color:#888;">Consistent, calculated high-performance merging natural drive with logic.</p>
+            <p style="font-size: 0.85rem; color:#888;">Designing tactical frameworks.</p>
         </div>
     </div>
 
-    <!-- ASSETS -->
     <div class="section-title">Digital Assets & Tools</div>
     <div class="services">
         <div class="service-card">
-            <img src="armory-preview.png" alt="PrimLiQ Armory" style="width:100%; border-radius:8px; margin-bottom:15px; border:1px solid rgba(255,255,255,0.1);">
+            <img src="armory-preview.png" alt="Armory" style="width:100%; border-radius:8px; margin-bottom:15px; border:1px solid rgba(255,255,255,0.1);">
             <span style="color: var(--prim-teal); font-weight: bold; font-size: 0.7rem;">COLLECTION</span>
             <h3>THE ARMORY</h3>
-            <p style="font-size: 0.85rem; color:#888;">Explore our master vault of gamified systems and Notion templates.</p>
+            <p style="font-size: 0.85rem; color:#888;">High-performance systems.</p>
             <a href="assets.html" target="_blank" rel="noopener noreferrer" class="btn" style="padding: 8px 15px; font-size: 0.7rem; margin-top: 10px;">ENTER THE ARMORY</a>
         </div>
         <div class="service-card">
@@ -242,16 +195,13 @@
             </div>
             <span style="color: var(--prim-teal); font-weight: bold; font-size: 0.7rem;">INTELLECT</span>
             <h3>Custom Automations</h3>
-            <p style="font-size: 0.85rem; color:#888;">Bespoke Notion or CLI builds.</p>
+            <p style="font-size: 0.85rem; color:#888;">Bespoke builds.</p>
             <a href="contact.html" target="_blank" rel="noopener noreferrer" class="btn" style="padding: 8px 15px; font-size: 0.7rem; margin-top: 10px;">Inquire Here</a>
         </div>
     </div>
 
     <div class="section-title">The Primal Vault</div>
     <div class="vault-container" style="width: 100%;">
-        <p style="color: #888; font-size: 0.85rem; margin-bottom: 20px;">
-            Get high-level tactical updates and the "Alpha Series" roadmap.
-        </p>
         <form action="https://formspree.io/f/meerpnnq" method="POST" class="vault-form">
             <input type="email" name="email" class="vault-input" placeholder="ENTER EMAIL" required>
             <button type="submit" class="vault-btn">JOIN VAULT</button>
@@ -286,8 +236,8 @@
             searchInput.addEventListener('input', (e) => {
                 const value = e.target.value.toLowerCase();
                 cards.forEach(card => {
-                    const title = card.querySelector('h3').innerText.toLowerCase();
-                    const desc = card.querySelector('p').innerText.toLowerCase();
+                    const title = card.querySelector('h3')?.innerText.toLowerCase() || "";
+                    const desc = card.querySelector('p')?.innerText.toLowerCase() || "";
                     card.style.display = (title.includes(value) || desc.includes(value)) ? "block" : "none";
                 });
             });
