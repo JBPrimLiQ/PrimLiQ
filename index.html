@@ -219,16 +219,92 @@
             letter-spacing: 1px;
         }
 
-
         .vault-btn:hover {
             background: #fff;
             box-shadow: 0 0 15px rgba(0, 206, 206, 0.4);
         }
+
+        /* Top Navigation Bar */
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: rgba(13, 15, 16, 0.8); /* Matches --dark-bg with transparency */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 2000;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-logo {
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-item {
+    color: var(--prim-silver);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+.nav-item:hover {
+    color: var(--prim-teal);
+    text-shadow: 0 0 8px rgba(0, 206, 206, 0.5);
+}
+
+/* Special Button Style for the Armory */
+.nav-item.highlight {
+    border: 1px solid rgba(0, 206, 206, 0.3);
+    background: rgba(0, 206, 206, 0.05);
+}
+
+.nav-item.highlight:hover {
+    background: var(--prim-teal);
+    color: #000;
+    box-shadow: 0 0 15px rgba(0, 206, 206, 0.3);
+}
+
+/* Adjust mobile padding */
+@media (max-width: 480px) {
+    .top-nav { padding: 15px 20px; }
+    .nav-links { gap: 10px; }
+    .nav-item { font-size: 0.6rem; padding: 5px 8px; }
+}
        
     </style>
 </head>
 <body>
 
+    <!-- NEW TOP NAVIGATION -->
+    <nav class="top-nav">
+        <a href="#hero-section" class="nav-logo">PrimLiQ</a>
+        <div class="nav-links">
+            <a href="about.html" class="nav-item">About</a>
+            <a href="assets.html" class="nav-item highlight">The Armory</a>
+            <a href="contact.html" class="nav-item">Contact</a>
+        </div>
+    </nav>
 
     <!-- HERO SECTION -->
     <div class="container" id="hero-section">
@@ -238,13 +314,11 @@
         <a href="contact.html" class="btn" target="_blank" rel="noopener noreferrer">GET IN TOUCH</a>
     </div>
 
-
     <!-- MISSION SECTION -->
     <div class="section-title">The Mission</div>
     <p class="philosophy-text">
         Modern brilliance is hollow without ancestral drive. PrimLiQ bridges the gap—combining the <span style="color:var(--prim-teal)">raw, guttural instinct</span> to succeed with the <span style="color:#fff">cold, calculated precision</span> of high-level strategy.
     </p>
-
 
     <!-- ROADMAP SECTION -->
     <div class="section-title">The Roadmap</div>
@@ -266,20 +340,16 @@
         </div>
     </div>
 
-
     <!-- ASSETS SECTION -->
     <div class="section-title">Digital Assets & Tools</div>
     <div class="services">
-    <div class="service-card">
-        <!-- Using a more 'collection' style preview image here -->
-        <img src="armory-preview.png" alt="PrimLiQ Armory" style="width:100%; border-radius:8px; margin-bottom:15px; border:1px solid rgba(255,255,255,0.1); filter: brightness(0.8);">
-        
-        <span style="color: var(--prim-teal); font-weight: bold; font-size: 0.7rem; letter-spacing: 2px;">COLLECTION</span>
-        <h3>THE ARMORY</h3>
-        <p style="font-size: 0.85rem; color:#888;">Explore our master vault of gamified systems, high-performance Notion templates, and digital power-ups.</p>
-        
-        <a href="assets.html" target="_blank" rel="noopener noreferrer" class="btn" style="padding: 8px 15px; font-size: 0.7rem; margin-top: 10px;">ENTER THE ARMORY</a>
-    </div>
+        <div class="service-card">
+            <img src="armory-preview.png" alt="PrimLiQ Armory" style="width:100%; border-radius:8px; margin-bottom:15px; border:1px solid rgba(255,255,255,0.1); filter: brightness(0.8);">
+            <span style="color: var(--prim-teal); font-weight: bold; font-size: 0.7rem; letter-spacing: 2px;">COLLECTION</span>
+            <h3>THE ARMORY</h3>
+            <p style="font-size: 0.85rem; color:#888;">Explore our master vault of gamified systems, high-performance Notion templates, and digital power-ups.</p>
+            <a href="assets.html" target="_blank" rel="noopener noreferrer" class="btn" style="padding: 8px 15px; font-size: 0.7rem; margin-top: 10px;">ENTER THE ARMORY</a>
+        </div>
 
         <div class="service-card">
             <div style="width:100%; height:150px; background: rgba(255,255,255,0.05); border-radius:8px; margin-bottom:15px; display:flex; align-items:center; justify-content:center; border:1px dashed #333;">
@@ -291,14 +361,12 @@
             <a href="contact.html" target="_blank" rel="noopener noreferrer" class="btn" style="padding: 8px 15px; font-size: 0.7rem; margin-top: 10px;">Inquire Here</a>
         </div>
 
-
-        <!-- JOIN THE VAULT (LEAD CAPTURE) -->
+    <!-- JOIN THE VAULT (LEAD CAPTURE) -->
     <div class="section-title">The Primal Vault</div>
-    <div class="vault-container">
-        <p style="color: #888; font-size: 0.85rem; margin-bottom: 20px;">
+    <div class="vault-container" style="width: 100%;"> <!-- Added width for layout safety -->
+        <p style="color: #888; font-size: 0.85rem; margin-bottom: 20px; text-align: center;">
             Get high-level tactical updates, exclusive Notion templates, and the "Alpha Series" roadmap.
         </p>
-        <!-- Formspree ID: meerpnnq (Reusing your ID for now) -->
         <form action="https://formspree.io/f/meerpnnq" method="POST" class="vault-form">
             <input type="hidden" name="_subject" value="NEW VAULT SUBSCRIBER">
             <input type="email" name="email" class="vault-input" placeholder="ENTER EMAIL FOR ACCESS" required>
@@ -306,9 +374,7 @@
         </form>
     </div>
 
-
     </div>
-
 
     <!-- SOCIALS -->
     <div class="social-links">
@@ -317,13 +383,10 @@
         <a href="https://tiktok.com/@primliq" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
     </div>
 
-
     <!-- STICKY BUTTON -->
     <a href="contact.html" id="primal-action-btn" target="_blank" rel="noopener noreferrer" class="btn">GET IN TOUCH</a>
 
-
     <div class="footer-note">© 2026 PRIMLIQ | ALPHA SERIES | EST. 2024</div>
-
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -333,10 +396,8 @@
                 entries.forEach(entry => {
                     actionBtn.classList.toggle("is-visible", !entry.isIntersecting);
                 });
-            }, { threshold: 0.1 }); // Added a slight threshold for smoother trigger
+            }, { threshold: 0.1 });
             observer.observe(heroSection);
         });
     </script>
-
-
 </body>
