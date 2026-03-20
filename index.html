@@ -5,26 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PrimLiQ | Primal Drive. IQ Executed.</title>
 
-
-    <!-- Preconnect to speed up FontAwesome load -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" type="image/png" href="favicon.png">
-
-
-    <!-- Primary Metadata -->
-    <meta name="description" content="PrimLiQ: The fusion of instinct and intellect. High-level strategy for high-performance execution.">
-    <meta property="og:title" content="PrimLiQ | Primal Drive. IQ Executed.">
-    <meta property="og:description" content="Evolve your edge with our strategic framework.">
-    <meta property="og:image" content="logo.png">
-    <meta name="twitter:card" content="summary_large_image">
-
 
     <style>
     :root {
         --prim-teal: #00cece;
         --prim-silver: #a8a8a8;
         --dark-bg: #0d0f10;
+        --glass: rgba(255, 255, 255, 0.03);
     }
 
     body {
@@ -46,219 +36,131 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
-    .container {
-        padding: 60px 50px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.02);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        max-width: 650px;
+    /* --- TOP NAVIGATION --- */
+    .top-nav {
+        position: fixed; top: 0; left: 0; width: 100%;
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 12px 40px; background: rgba(13, 15, 16, 0.9);
+        backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+        z-index: 9999; box-sizing: border-box; border-bottom: 1px solid rgba(0, 206, 206, 0.15);
+    }
+
+    .nav-logo { font-weight: 900; letter-spacing: 3px; color: #fff; text-decoration: none; font-size: 1rem; text-transform: none; flex-shrink: 0; }
+
+    /* Nav Search Bar */
+    .nav-search-container {
+        position: relative;
+        flex-grow: 1;
+        max-width: 400px;
+        margin: 0 30px;
+    }
+
+    .nav-search-input {
         width: 100%;
-        text-align: center;
-        margin-bottom: 40px;
-        box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-        transition: all 0.4s ease;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        padding: 8px 15px 8px 35px;
+        background: var(--glass);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+        color: #fff;
+        font-size: 0.8rem;
+        transition: all 0.3s ease;
     }
-    
-    .container:hover {
+
+    .nav-search-input:focus {
+        outline: none;
         border-color: var(--prim-teal);
-        box-shadow: 0 0 30px rgba(0, 206, 206, 0.15);
+        background: rgba(0, 206, 206, 0.05);
+        box-shadow: 0 0 15px rgba(0, 206, 206, 0.1);
     }
 
-    .logo-img { 
-        width: 320px; 
-        max-width: 100%;
-        margin-bottom: 30px; 
-        filter: drop-shadow(0 0 12px rgba(0, 206, 206, 0.4)); 
+    .nav-search-container::before {
+        content: '\f002'; font-family: "Font Awesome 5 Free"; font-weight: 900;
+        position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+        color: var(--prim-teal); font-size: 0.8rem; opacity: 0.6;
     }
 
+    .nav-links { display: flex; gap: 20px; align-items: center; flex-shrink: 0; }
+    .nav-item { color: var(--prim-silver); text-decoration: none; text-transform: uppercase; font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px; transition: 0.3s; padding: 6px 10px; }
+    .nav-item:hover { color: var(--prim-teal); }
+    .nav-item.highlight { border: 1px solid rgba(0, 206, 206, 0.3); background: rgba(0, 206, 206, 0.05); border-radius: 4px; }
+
+    /* --- HERO & CONTENT --- */
+    .container {
+        padding: 60px 50px; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px;
+        background: var(--glass); backdrop-filter: blur(12px); max-width: 650px; width: 100%;
+        text-align: center; margin-bottom: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        display: flex; flex-direction: column; align-items: center; box-sizing: border-box;
+    }
+
+    .logo-img { width: 320px; max-width: 100%; margin-bottom: 30px; filter: drop-shadow(0 0 12px rgba(0, 206, 206, 0.4)); }
+    
+    /* Hiding redundant elements as requested */
     h1, .tagline { display: none; }
 
     .btn {
-        display: inline-block;
-        padding: 16px 40px;
+        display: inline-block; padding: 16px 40px;
         background: linear-gradient(135deg, #fff 0%, var(--prim-silver) 100%);
-        color: #000 !important;
-        text-decoration: none;
-        font-weight: 900;
-        border-radius: 4px;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        color: #000 !important; text-decoration: none; font-weight: 900; border-radius: 4px;
+        transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); text-transform: uppercase; letter-spacing: 2px;
     }
 
     .btn:hover { background: var(--prim-teal); color: #fff !important; transform: scale(1.05); box-shadow: 0 0 20px rgba(0, 206, 206, 0.5); }
 
     .section-title {
-        text-transform: uppercase;
-        letter-spacing: 5px;
-        font-size: 0.8rem;
-        margin: 60px 0 30px 0;
-        color: var(--prim-silver);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        width: 100%;
-        max-width: 650px;
-        padding-bottom: 15px;
-        text-align: center;
+        text-transform: uppercase; letter-spacing: 5px; font-size: 0.8rem; margin: 60px 0 30px 0;
+        color: var(--prim-silver); border-bottom: 1px solid rgba(255, 255, 255, 0.1); width: 100%; max-width: 650px; padding-bottom: 15px; text-align: center;
     }
 
     .philosophy-text { max-width: 600px; line-height: 1.8; color: #a0a0a0; text-align: center; margin-bottom: 30px; font-size: 1.05rem; }
-
     .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 850px; width: 100%; }
-
+    
     .service-card {
-        padding: 30px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        background: rgba(255, 255, 255, 0.01);
-        border-radius: 12px;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
+        padding: 30px; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(255, 255, 255, 0.01);
+        border-radius: 12px; transition: 0.3s ease; position: relative; overflow: hidden;
     }
 
     .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--prim-teal); opacity: 0.5; }
-
     .service-card:hover { background: rgba(0, 206, 206, 0.03); border-color: var(--prim-teal); transform: translateY(-8px); }
-
     .service-card h3 { color: #fff; margin-top: 10px; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; }
 
-    .social-links { display: flex; justify-content: center; gap: 35px; margin-top: 100px; margin-bottom: 60px; width: 100%; }
-
-    .social-links a { color: #fff; font-size: 1.5rem; transition: all 0.3s ease; }
-
-    .social-links a:hover { color: var(--prim-teal); transform: translateY(-5px); }
-
-    #primal-action-btn {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        pointer-events: none;
-        z-index: 1000;
-        padding: 12px 25px;
-        font-size: 0.75rem;
-    }
-
-    #primal-action-btn.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
-
-    .footer-note { font-size: 0.7rem; color: #444; margin-top: 40px; letter-spacing: 3px; text-transform: uppercase; text-align: center; }
-
-    @media (max-width: 480px) {
-        body { padding-top: 100px; }
-        .logo-img { width: 240px; }
-        #primal-action-btn { right: 15px; bottom: 15px; width: calc(100% - 30px); text-align: center; }
-    }
-
-    /* Vault and Nav Styles */
     .vault-container {
-        max-width: 600px;
-        margin: 40px auto;
-        padding: 30px;
-        border: 1px solid rgba(0, 206, 206, 0.2);
-        border-radius: 12px;
-        background: rgba(0, 206, 206, 0.02);
-        text-align: center;
+        max-width: 600px; margin: 40px auto; padding: 30px; border: 1px solid rgba(0, 206, 206, 0.2);
+        border-radius: 12px; background: rgba(0, 206, 206, 0.02); text-align: center;
     }
 
     .vault-form { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .vault-input { flex: 1; min-width: 200px; padding: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 4px; color: #fff; }
+    .vault-btn { padding: 12px 25px; background: var(--prim-teal); color: #000; border: none; border-radius: 4px; font-weight: 900; cursor: pointer; transition: 0.3s; }
 
-    .vault-input {
-        flex: 1; min-width: 250px; padding: 12px;
-        background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 4px; color: #fff; font-family: inherit;
+    .social-links { display: flex; justify-content: center; gap: 35px; margin: 80px 0; width: 100%; }
+    .social-links a { color: #fff; font-size: 1.5rem; transition: 0.3s; }
+    .social-links a:hover { color: var(--prim-teal); transform: translateY(-5px); }
+
+    #primal-action-btn { position: fixed; bottom: 30px; right: 30px; opacity: 0; transform: translateY(20px); transition: 0.4s; pointer-events: none; z-index: 1000; padding: 12px 25px; font-size: 0.75rem; }
+    #primal-action-btn.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .footer-note { font-size: 0.7rem; color: #444; margin-top: 40px; letter-spacing: 3px; text-transform: uppercase; text-align: center; }
+
+    @media (max-width: 768px) {
+        .nav-search-container { display: none; } /* Hide search in nav on mobile for space */
+        .top-nav { padding: 15px 20px; }
+        .logo-img { width: 240px; }
     }
-
-    .vault-input:focus { outline: none; border-color: var(--prim-teal); }
-
-    .vault-btn {
-        padding: 12px 25px; background: var(--prim-teal); color: #000;
-        border: none; border-radius: 4px; font-weight: 900; cursor: pointer;
-        transition: all 0.3s ease; letter-spacing: 1px;
-    }
-
-    .top-nav {
-        position: fixed; top: 0; left: 0; width: 100%;
-        display: flex; justify-content: space-between; align-items: center;
-        padding: 15px 40px; background: rgba(13, 15, 16, 0.95);
-        backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-        z-index: 9999; box-sizing: border-box; border-bottom: 1px solid rgba(0, 206, 206, 0.15);
-    }
-
-    .nav-logo { font-weight: 900; letter-spacing: 3px; color: #fff; text-decoration: none; font-size: 0.9rem; text-transform: none; }
-    .nav-links { display: flex; gap: 25px; }
-    .nav-item { color: var(--prim-silver); text-decoration: none; text-transform: uppercase; font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; transition: all 0.3s ease; padding: 8px 12px; border-radius: 4px; }
-    .nav-item:hover { color: var(--prim-teal); text-shadow: 0 0 8px rgba(0, 206, 206, 0.5); }
-    .nav-item.highlight { border: 1px solid rgba(0, 206, 206, 0.3); background: rgba(0, 206, 206, 0.05); }
-    .nav-item.highlight:hover { background: var(--prim-teal); color: #000; box-shadow: 0 0 15px rgba(0, 206, 206, 0.3); }
-    
-    /* --- SEARCH BAR SECTION --- */
-    .search-container {
-    width: 100%;
-    max-width: 600px;
-    margin: 20px auto 40px auto;
-    position: relative;
-    display: flex;
-    align-items: center;
-    }
-
-    .search-input {
-    width: 100%;
-    padding: 15px 20px 15px 50px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(0, 206, 206, 0.2);
-    border-radius: 12px;
-    color: #fff;
-    font-family: inherit;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    backdrop-filter: blur(10px);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .search-input:focus {
-    outline: none;
-    border-color: var(--prim-teal);
-    background: rgba(0, 206, 206, 0.05);
-    box-shadow: 0 0 20px rgba(0, 206, 206, 0.2);
-    transform: scale(1.02);
-    }
-
-    /* The Search Icon */
-    .search-container::before {
-    content: '\f002'; /* FontAwesome Search Icon */
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    position: absolute;
-    left: 20px;
-    color: var(--prim-teal);
-    font-size: 1rem;
-    opacity: 0.7;
-    }
-
-    /* Animation for the placeholder */
-    .search-input::placeholder {
-    color: #555;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    }
-</style>
+    </style>
 </head>
 <body>
 
     <!-- TOP NAVIGATION -->
     <nav class="top-nav">
         <a href="https://primliq.github.io/PLQ/" class="nav-logo">PrimLiQ</a>
+        
+        <!-- INTEGRATED SEARCH BAR -->
+        <div class="nav-search-container">
+            <input type="text" class="nav-search-input" placeholder="SEARCH THE ARMORY..." id="armorySearch">
+        </div>
+
         <div class="nav-links">
             <a href="about.html" class="nav-item">About</a>
-            <a href="assets.html" class="nav-item highlight">The Armory</a>
+            <a href="assets.html" class="nav-item highlight">Armory</a>
             <a href="contact.html" class="nav-item">Contact</a>
         </div>
     </nav>
@@ -297,13 +199,6 @@
         </div>
     </div>
 
-    <div class="search-title" style="color: var(--prim-silver); font-size: 0.7rem; letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase;">
-        Search the Armory
-    </div>
-    <div class="search-container">
-        <input type="text" class="search-input" placeholder="Search Assets, Tools, Intel..." id="armorySearch">
-    </div>
-
     <!-- ASSETS SECTION -->
     <div class="section-title">Digital Assets & Tools</div>
     <div class="services">
@@ -311,7 +206,7 @@
             <img src="armory-preview.png" alt="PrimLiQ Armory" style="width:100%; border-radius:8px; margin-bottom:15px; border:1px solid rgba(255,255,255,0.1); filter: brightness(0.8);">
             <span style="color: var(--prim-teal); font-weight: bold; font-size: 0.7rem; letter-spacing: 2px;">COLLECTION</span>
             <h3>THE ARMORY</h3>
-            <p style="font-size: 0.85rem; color:#888;">Explore our master vault of gamified systems, high-performance Notion templates, and digital power-ups.</p>
+            <p style="font-size: 0.85rem; color:#888;">Explore our master vault of gamified systems and high-performance Notion templates.</p>
             <a href="assets.html" target="_blank" rel="noopener noreferrer" class="btn" style="padding: 8px 15px; font-size: 0.7rem; margin-top: 10px;">ENTER THE ARMORY</a>
         </div>
 
@@ -324,20 +219,18 @@
             <p style="font-size: 0.85rem; color:#888;">Bespoke Notion or CLI builds.</p>
             <a href="contact.html" target="_blank" rel="noopener noreferrer" class="btn" style="padding: 8px 15px; font-size: 0.7rem; margin-top: 10px;">Inquire Here</a>
         </div>
+    </div>
 
-    <!-- JOIN THE VAULT (LEAD CAPTURE) -->
+    <!-- JOIN THE VAULT -->
     <div class="section-title">The Primal Vault</div>
     <div class="vault-container" style="width: 100%;">
         <p style="color: #888; font-size: 0.85rem; margin-bottom: 20px; text-align: center;">
             Get high-level tactical updates, exclusive Notion templates, and the "Alpha Series" roadmap.
         </p>
         <form action="https://formspree.io/f/meerpnnq" method="POST" class="vault-form">
-            <input type="hidden" name="_subject" value="NEW VAULT SUBSCRIBER">
             <input type="email" name="email" class="vault-input" placeholder="ENTER EMAIL FOR ACCESS" required>
             <button type="submit" class="vault-btn">JOIN THE VAULT</button>
         </form>
-    </div>
-
     </div>
 
     <!-- SOCIALS -->
@@ -347,7 +240,6 @@
         <a href="https://tiktok.com/@primliq" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
     </div>
 
-    <!-- STICKY BUTTON -->
     <a href="contact.html" id="primal-action-btn" target="_blank" rel="noopener noreferrer" class="btn">GET IN TOUCH</a>
 
     <div class="footer-note">© 2026 PRIMLIQ | ALPHA SERIES | EST. 2024</div>
@@ -356,28 +248,33 @@
         document.addEventListener("DOMContentLoaded", () => {
             const actionBtn = document.querySelector("#primal-action-btn");
             const heroSection = document.querySelector("#hero-section");
+            
+            // Sticky Button Observer
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     actionBtn.classList.toggle("is-visible", !entry.isIntersecting);
                 });
             }, { threshold: 0.1 });
             observer.observe(heroSection);
-        });
 
-        const searchInput = document.getElementById('armorySearch');
-        const cards = document.querySelectorAll('.service-card');
+            // Live Search Logic
+            const searchInput = document.getElementById('armorySearch');
+            const cards = document.querySelectorAll('.service-card');
 
-        searchInput.addEventListener('input', (e) => {
-            const value = e.target.value.toLowerCase();
-            cards.forEach(card => {
-                const title = card.querySelector('h3').innerText.toLowerCase();
-                const desc = card.querySelector('p').innerText.toLowerCase();
-                if (title.includes(value) || desc.includes(value)) {
-                    card.style.display = "block";
-                } else {
-                    card.style.display = "none";
-                }
+            searchInput.addEventListener('input', (e) => {
+                const value = e.target.value.toLowerCase();
+                cards.forEach(card => {
+                    const title = card.querySelector('h3').innerText.toLowerCase();
+                    const desc = card.querySelector('p').innerText.toLowerCase();
+                    // Show if match, hide if not
+                    if (title.includes(value) || desc.includes(value)) {
+                        card.style.display = "block";
+                    } else {
+                        card.style.display = "none";
+                    }
+                });
             });
         });
     </script>
 </body>
+</html>
