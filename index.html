@@ -19,7 +19,12 @@
 
     body {
         background-color: var(--dark-bg);
-        background-image: radial-gradient(circle at 50% 20%, #1a1e22 0%, #0d0f10 100%);
+        /* Technical Grid + Radial Shadow Background */
+        background-image: 
+            radial-gradient(circle at 50% 20%, #1a1e22 0%, #0d0f10 100%),
+            linear-gradient(to right, rgba(0, 206, 206, 0.02) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0, 206, 206, 0.02) 1px, transparent 1px);
+        background-size: 100% 100%, 50px 50px, 50px 50px;
         color: #d1d1d1;
         font-family: 'Segoe UI', Roboto, sans-serif;
         margin: 0;
@@ -36,42 +41,56 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
+    /* --- SIDE SCREEN HUD (Fills Blank Sides) --- */
+    .side-hud {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 120px;
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 20px;
+        pointer-events: none;
+        z-index: 10;
+        opacity: 0.3;
+    }
+
+    .hud-left { left: 40px; border-left: 1px solid var(--prim-teal); }
+    .hud-right { right: 40px; border-right: 1px solid var(--prim-teal); text-align: right; }
+
+    .hud-line {
+        font-size: 0.6rem;
+        letter-spacing: 3px;
+        color: var(--prim-teal);
+        text-transform: uppercase;
+        font-weight: 900;
+        margin-bottom: 10px;
+    }
+
     /* --- TOP NAVIGATION --- */
     .top-nav {
         position: fixed; top: 0; left: 0; width: 100%;
         display: flex; justify-content: space-between; align-items: center;
         padding: 12px 40px; background: rgba(13, 15, 16, 0.9);
         backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-        z-index: 9999; box-sizing: border-box; border-bottom: 1px solid rgba(0, 206, 206, 0.15);
+        z-index: 9999; box-sizing: border-box; border-bottom: 1px solid rgba(0, 206, 206, 0.25);
     }
 
-    .nav-logo { font-weight: 900; letter-spacing: 3px; color: #fff; text-decoration: none; font-size: 1rem; text-transform: none; flex-shrink: 0; }
+    .nav-logo { font-weight: 900; letter-spacing: 3px; color: #fff; text-decoration: none; font-size: 1rem; flex-shrink: 0; }
 
-    /* Nav Search Bar */
     .nav-search-container {
-        position: relative;
-        flex-grow: 1;
-        max-width: 400px;
-        margin: 0 30px;
+        position: relative; flex-grow: 1; max-width: 400px; margin: 0 30px;
     }
 
     .nav-search-input {
-        width: 100%;
-        padding: 8px 15px 8px 35px;
-        background: var(--glass);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 6px;
-        color: #fff;
-        font-size: 0.8rem;
-        transition: all 0.3s ease;
+        width: 100%; padding: 8px 15px 8px 35px; background: var(--glass);
+        border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px;
+        color: #fff; font-size: 0.8rem; transition: all 0.3s ease;
     }
 
-    .nav-search-input:focus {
-        outline: none;
-        border-color: var(--prim-teal);
-        background: rgba(0, 206, 206, 0.05);
-        box-shadow: 0 0 15px rgba(0, 206, 206, 0.1);
-    }
+    .nav-search-input:focus { outline: none; border-color: var(--prim-teal); background: rgba(0, 206, 206, 0.05); box-shadow: 0 0 15px rgba(0, 206, 206, 0.1); }
 
     .nav-search-container::before {
         content: '\f002'; font-family: "Font Awesome 5 Free"; font-weight: 900;
@@ -84,17 +103,16 @@
     .nav-item:hover { color: var(--prim-teal); }
     .nav-item.highlight { border: 1px solid rgba(0, 206, 206, 0.3); background: rgba(0, 206, 206, 0.05); border-radius: 4px; }
 
-    /* --- HERO & CONTENT --- */
-    .container {
+    /* --- MAIN PORTAL INTERFACE --- */
+    .branding-card {
         padding: 60px 50px; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px;
         background: var(--glass); backdrop-filter: blur(12px); max-width: 650px; width: 100%;
         text-align: center; margin-bottom: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.5);
         display: flex; flex-direction: column; align-items: center; box-sizing: border-box;
     }
 
-    .logo-img { width: 320px; max-width: 100%; margin-bottom: 30px; filter: drop-shadow(0 0 12px rgba(0, 206, 206, 0.4)); }
+    .logo-img { width: 320px; max-width: 100%; margin-bottom: 30px; filter: drop-shadow(0 0 15px rgba(0, 206, 206, 0.3)); }
     
-    /* Hiding redundant elements as requested */
     h1, .tagline { display: none; }
 
     .btn {
@@ -140,8 +158,9 @@
     #primal-action-btn.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
     .footer-note { font-size: 0.7rem; color: #444; margin-top: 40px; letter-spacing: 3px; text-transform: uppercase; text-align: center; }
 
+    @media (max-width: 1024px) { .side-hud { display: none; } }
     @media (max-width: 768px) {
-        .nav-search-container { display: none; } /* Hide search in nav on mobile for space */
+        .nav-search-container { display: none; }
         .top-nav { padding: 15px 20px; }
         .logo-img { width: 240px; }
     }
@@ -149,15 +168,25 @@
 </head>
 <body>
 
-    <!-- TOP NAVIGATION -->
+    <!-- HUD ELEMENTS (Fills horizontal space) -->
+    <div class="side-hud hud-left">
+        <div class="hud-line">System.Status: Active</div>
+        <div class="hud-line">PLQ_Core_v2.0</div>
+        <div class="hud-line">BndW: Optimized</div>
+    </div>
+
+    <div class="side-hud hud-right">
+        <div class="hud-line">Logic.Execute</div>
+        <div class="hud-line">Primal.Instinct</div>
+        <div class="hud-line">Alpha.2026</div>
+    </div>
+
+    <!-- NAVIGATION -->
     <nav class="top-nav">
         <a href="https://primliq.github.io/PLQ/" class="nav-logo">PrimLiQ</a>
-        
-        <!-- INTEGRATED SEARCH BAR -->
         <div class="nav-search-container">
-            <input type="text" class="nav-search-input" placeholder="SEARCH THE ARMORY..." id="armorySearch">
+            <input type="text" class="nav-search-input" placeholder="SEARCH ASSETS..." id="armorySearch">
         </div>
-
         <div class="nav-links">
             <a href="about.html" class="nav-item">About</a>
             <a href="assets.html" class="nav-item highlight">Armory</a>
@@ -165,54 +194,51 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <div class="container" id="hero-section">
+    <!-- CORE INTERFACE CARD -->
+    <div class="branding-card" id="main-portal">
         <img src="logo.png" alt="PrimLiQ Logo" class="logo-img">
-        <h1>PrimLiQ</h1>
-        <p class="tagline">Primal Drive. Unique Edge. IQ Executed.</p>
         <a href="contact.html" class="btn" target="_blank" rel="noopener noreferrer">GET IN TOUCH</a>
     </div>
 
-    <!-- MISSION SECTION -->
+    <!-- MISSION -->
     <div class="section-title">The Mission</div>
     <p class="philosophy-text">
         Modern brilliance is hollow without ancestral drive. PrimLiQ bridges the gap—combining the <span style="color:var(--prim-teal)">raw, guttural instinct</span> to succeed with the <span style="color:#fff">cold, calculated precision</span> of high-level strategy.
     </p>
 
-    <!-- ROADMAP SECTION -->
+    <!-- ROADMAP -->
     <div class="section-title">The Roadmap</div>
     <div class="services">
         <div class="service-card">
             <span style="color: var(--prim-teal); font-weight: bold; font-size: 0.7rem;">01. AUDIT</span>
             <h3>INSTINCT</h3>
-            <p style="font-size: 0.85rem; color:#888;">Identifying the raw strengths and stripping away the noise that limits your potential.</p>
+            <p style="font-size: 0.85rem; color:#888;">Identifying raw strengths and stripping noise that limits your potential.</p>
         </div>
         <div class="service-card">
             <span style="color: var(--prim-teal); font-weight: bold; font-size: 0.7rem;">02. STRATEGY</span>
             <h3>INTELLECT</h3>
-            <p style="font-size: 0.85rem; color:#888;">Designing a tactical framework to channel that energy into high-impact execution.</p>
+            <p style="font-size: 0.85rem; color:#888;">Designing tactical frameworks to channel energy into execution.</p>
         </div>
         <div class="service-card" style="grid-column: span 2;">
             <span style="color: var(--prim-teal); font-weight: bold; font-size: 0.7rem;">03. RESULT</span>
             <h3>DOMINANCE</h3>
-            <p style="font-size: 0.85rem; color:#888;">Consistent, calculated high-performance that merges your natural drive with elite logic.</p>
+            <p style="font-size: 0.85rem; color:#888;">Consistent, calculated high-performance merging natural drive with logic.</p>
         </div>
     </div>
 
-    <!-- ASSETS SECTION -->
+    <!-- ASSETS -->
     <div class="section-title">Digital Assets & Tools</div>
     <div class="services">
         <div class="service-card">
-            <img src="armory-preview.png" alt="PrimLiQ Armory" style="width:100%; border-radius:8px; margin-bottom:15px; border:1px solid rgba(255,255,255,0.1); filter: brightness(0.8);">
-            <span style="color: var(--prim-teal); font-weight: bold; font-size: 0.7rem; letter-spacing: 2px;">COLLECTION</span>
+            <img src="armory-preview.png" alt="PrimLiQ Armory" style="width:100%; border-radius:8px; margin-bottom:15px; border:1px solid rgba(255,255,255,0.1);">
+            <span style="color: var(--prim-teal); font-weight: bold; font-size: 0.7rem;">COLLECTION</span>
             <h3>THE ARMORY</h3>
-            <p style="font-size: 0.85rem; color:#888;">Explore our master vault of gamified systems and high-performance Notion templates.</p>
+            <p style="font-size: 0.85rem; color:#888;">Explore our master vault of gamified systems and Notion templates.</p>
             <a href="assets.html" target="_blank" rel="noopener noreferrer" class="btn" style="padding: 8px 15px; font-size: 0.7rem; margin-top: 10px;">ENTER THE ARMORY</a>
         </div>
-
         <div class="service-card">
             <div style="width:100%; height:150px; background: rgba(255,255,255,0.05); border-radius:8px; margin-bottom:15px; display:flex; align-items:center; justify-content:center; border:1px dashed #333;">
-                <span style="color:#444; font-size: 0.8rem;">[ UNDER DEVELOPMENT ]</span>
+                <span style="color:#444; font-size: 0.8rem;">[ DEVELOPMENT ]</span>
             </div>
             <span style="color: var(--prim-teal); font-weight: bold; font-size: 0.7rem;">INTELLECT</span>
             <h3>Custom Automations</h3>
@@ -221,23 +247,21 @@
         </div>
     </div>
 
-    <!-- JOIN THE VAULT -->
     <div class="section-title">The Primal Vault</div>
     <div class="vault-container" style="width: 100%;">
-        <p style="color: #888; font-size: 0.85rem; margin-bottom: 20px; text-align: center;">
-            Get high-level tactical updates, exclusive Notion templates, and the "Alpha Series" roadmap.
+        <p style="color: #888; font-size: 0.85rem; margin-bottom: 20px;">
+            Get high-level tactical updates and the "Alpha Series" roadmap.
         </p>
         <form action="https://formspree.io/f/meerpnnq" method="POST" class="vault-form">
-            <input type="email" name="email" class="vault-input" placeholder="ENTER EMAIL FOR ACCESS" required>
-            <button type="submit" class="vault-btn">JOIN THE VAULT</button>
+            <input type="email" name="email" class="vault-input" placeholder="ENTER EMAIL" required>
+            <button type="submit" class="vault-btn">JOIN VAULT</button>
         </form>
     </div>
 
-    <!-- SOCIALS -->
     <div class="social-links">
-        <a href="https://facebook.com/PrimLiQ/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://instagram.com/jbworkamazing/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://tiktok.com/@primliq" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="https://facebook.com/PrimLiQ/" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://instagram.com/jbworkamazing/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+        <a href="https://tiktok.com/@primliq" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
     </div>
 
     <a href="contact.html" id="primal-action-btn" target="_blank" rel="noopener noreferrer" class="btn">GET IN TOUCH</a>
@@ -247,17 +271,15 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const actionBtn = document.querySelector("#primal-action-btn");
-            const heroSection = document.querySelector("#hero-section");
+            const portalSection = document.querySelector("#main-portal");
             
-            // Sticky Button Observer
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     actionBtn.classList.toggle("is-visible", !entry.isIntersecting);
                 });
             }, { threshold: 0.1 });
-            observer.observe(heroSection);
+            observer.observe(portalSection);
 
-            // Live Search Logic
             const searchInput = document.getElementById('armorySearch');
             const cards = document.querySelectorAll('.service-card');
 
@@ -266,12 +288,7 @@
                 cards.forEach(card => {
                     const title = card.querySelector('h3').innerText.toLowerCase();
                     const desc = card.querySelector('p').innerText.toLowerCase();
-                    // Show if match, hide if not
-                    if (title.includes(value) || desc.includes(value)) {
-                        card.style.display = "block";
-                    } else {
-                        card.style.display = "none";
-                    }
+                    card.style.display = (title.includes(value) || desc.includes(value)) ? "block" : "none";
                 });
             });
         });
