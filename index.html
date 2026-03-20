@@ -15,7 +15,7 @@
         --prim-silver: #a8a8a8;
         --dark-bg: #0d0f10;
         --glass: rgba(255, 255, 255, 0.03);
-        --logo-glow: 0 0 25px rgba(0, 206, 206, 0.4);
+        --neon-glow: 0 0 20px rgba(0, 206, 206, 0.4);
     }
 
     body {
@@ -41,43 +41,71 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
-    /* --- LOGO ENHANCEMENTS --- */
+    /* --- NAVIGATION MASCOT --- */
+    .nav-mascot {
+        position: fixed;
+        bottom: 30px;
+        left: 40px;
+        width: 100px;
+        z-index: 10000;
+        filter: drop-shadow(var(--neon-glow));
+        animation: floatMascot 4s ease-in-out infinite;
+        pointer-events: none;
+        transition: 0.5s ease;
+    }
+
+    @keyframes floatMascot {
+        0%, 100% { transform: translateY(0) rotate(-2deg); }
+        50% { transform: translateY(-15px) rotate(3deg); }
+    }
+
+    /* --- LOGO & CARD ENHANCEMENTS --- */
+    .branding-card {
+        position: relative;
+        padding: 60px 50px; 
+        border: 1px solid rgba(0, 206, 206, 0.2); 
+        border-radius: 20px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+        backdrop-filter: blur(20px); 
+        max-width: 650px; width: 100%;
+        text-align: center; margin-bottom: 40px; 
+        box-shadow: 0 0 40px rgba(0,0,0,0.8), inset 0 0 20px rgba(0, 206, 206, 0.05);
+        display: flex; flex-direction: column; align-items: center; box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    /* Animated scanning line for the card */
+    .branding-card::after {
+        content: '';
+        position: absolute; top: -100%; left: 0; width: 100%; height: 100%;
+        background: linear-gradient(to bottom, transparent, rgba(0, 206, 206, 0.05), transparent);
+        animation: scan 8s linear infinite;
+    }
+
+    @keyframes scan {
+        0% { top: -100%; }
+        100% { top: 100%; }
+    }
+
     .logo-img { 
         width: 320px; 
         max-width: 100%; 
         margin-bottom: 30px; 
-        /* The "Cool" Factor: Neon Depth + Pulse */
-        filter: drop-shadow(var(--logo-glow)) brightness(1.1);
-        transition: 0.5s ease;
-        animation: logoPulse 4s infinite ease-in-out;
+        filter: drop-shadow(0 0 15px rgba(0, 206, 206, 0.5));
+        transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
     
     .logo-img:hover {
-        filter: drop-shadow(0 0 35px rgba(0, 206, 206, 0.7)) brightness(1.2);
-        transform: scale(1.02);
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 25px rgba(0, 206, 206, 0.8));
     }
 
-    @keyframes logoPulse {
-        0%, 100% { filter: drop-shadow(0 0 15px rgba(0, 206, 206, 0.3)); }
-        50% { filter: drop-shadow(0 0 30px rgba(0, 206, 206, 0.6)); }
-    }
-
+    /* --- HUD & TOP NAV (Consistent with image glow) --- */
     .nav-logo { 
-        font-weight: 900; 
-        letter-spacing: 5px; 
-        color: #fff; 
-        text-decoration: none; 
-        font-size: 1.1rem; 
-        flex-shrink: 0; 
-        text-shadow: 0 0 10px rgba(0, 206, 206, 0.5);
-        transition: 0.3s;
-    }
-    .nav-logo:hover {
-        color: var(--prim-teal);
-        text-shadow: 0 0 20px var(--prim-teal);
+        font-weight: 900; letter-spacing: 5px; color: #fff; text-decoration: none; font-size: 1.1rem; 
+        text-shadow: 0 0 10px rgba(0, 206, 206, 0.8);
     }
 
-    /* --- SIDE SCREEN HUD --- */
     .side-hud {
         position: fixed; top: 50%; transform: translateY(-50%);
         width: 120px; height: 400px; display: flex; flex-direction: column;
@@ -88,7 +116,6 @@
     .hud-right { right: 40px; border-right: 1px solid var(--prim-teal); text-align: right; }
     .hud-line { font-size: 0.6rem; letter-spacing: 3px; color: var(--prim-teal); text-transform: uppercase; font-weight: 900; margin-bottom: 10px; }
 
-    /* --- TOP NAVIGATION --- */
     .top-nav {
         position: fixed; top: 0; left: 0; width: 100%;
         display: flex; justify-content: space-between; align-items: center;
@@ -112,18 +139,8 @@
 
     .nav-links { display: flex; gap: 20px; align-items: center; flex-shrink: 0; }
     .nav-item { color: var(--prim-silver); text-decoration: none; text-transform: uppercase; font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px; transition: 0.3s; padding: 6px 10px; }
-    .nav-item:hover { color: var(--prim-teal); }
+    .nav-item:hover { color: var(--prim-teal); text-shadow: var(--neon-glow); }
     .nav-item.highlight { border: 1px solid rgba(0, 206, 206, 0.3); background: rgba(0, 206, 206, 0.05); border-radius: 4px; }
-
-    /* --- MAIN PORTAL INTERFACE --- */
-    .branding-card {
-        padding: 60px 50px; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px;
-        background: var(--glass); backdrop-filter: blur(12px); max-width: 650px; width: 100%;
-        text-align: center; margin-bottom: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-        display: flex; flex-direction: column; align-items: center; box-sizing: border-box;
-    }
-    
-    h1, .tagline { display: none; }
 
     .btn {
         display: inline-block; padding: 16px 40px;
@@ -165,7 +182,10 @@
     #primal-action-btn.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
     .footer-note { font-size: 0.7rem; color: #444; margin-top: 40px; letter-spacing: 3px; text-transform: uppercase; text-align: center; }
 
-    @media (max-width: 1024px) { .side-hud { display: none; } }
+    @media (max-width: 1024px) { 
+        .side-hud { display: none; } 
+        .nav-mascot { width: 60px; left: 20px; bottom: 20px; }
+    }
     @media (max-width: 768px) {
         .nav-search-container { display: none; }
         .top-nav { padding: 15px 20px; }
@@ -174,6 +194,9 @@
     </style>
 </head>
 <body>
+
+    <!-- MASCOT COMPANION (Add this to all tabs) -->
+    <img src="mascot.png" alt="PrimLiQ Mascot" class="nav-mascot">
 
     <div class="side-hud hud-left">
         <div class="hud-line">System.Status: Active</div>
@@ -188,15 +211,12 @@
     </div>
 
     <nav class="top-nav">
-        <!-- Main Nav Logo (Cooler text styling) -->
-        <a href="https://primliq.github.io/PLQ/" class="nav-logo">PrimLiQ</a>
-        
+        <!-- Home Button Links to main site - New Tab protocol -->
+        <a href="https://primliq.github.io/PLQ/" class="nav-logo" target="_blank">PrimLiQ</a>
         <div class="nav-search-container">
             <input type="text" class="nav-search-input" placeholder="SEARCH ASSETS..." id="armorySearch">
         </div>
-
         <div class="nav-links">
-            <!-- Nav links set to open in new tabs -->
             <a href="about.html" class="nav-item" target="_blank" rel="noopener noreferrer">About</a>
             <a href="assets.html" class="nav-item highlight" target="_blank" rel="noopener noreferrer">Armory</a>
             <a href="contact.html" class="nav-item" target="_blank" rel="noopener noreferrer">Contact</a>
@@ -204,7 +224,6 @@
     </nav>
 
     <div class="branding-card" id="main-portal">
-        <!-- Image Logo (With new glowing filter and pulse animation) -->
         <img src="logo.png" alt="PrimLiQ Logo" class="logo-img">
         <a href="contact.html" class="btn" target="_blank" rel="noopener noreferrer">GET IN TOUCH</a>
     </div>
@@ -278,10 +297,14 @@
         document.addEventListener("DOMContentLoaded", () => {
             const actionBtn = document.querySelector("#primal-action-btn");
             const portalSection = document.querySelector("#main-portal");
+            const mascot = document.querySelector(".nav-mascot");
             
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     actionBtn.classList.toggle("is-visible", !entry.isIntersecting);
+                    // Mascot reacts to scrolling past the branding card
+                    mascot.style.opacity = entry.isIntersecting ? "1" : "0.7";
+                    mascot.style.transform = entry.isIntersecting ? "scale(1)" : "scale(0.8)";
                 });
             }, { threshold: 0.1 });
             observer.observe(portalSection);
@@ -289,18 +312,18 @@
             const searchInput = document.getElementById('armorySearch');
             const cards = document.querySelectorAll('.service-card');
 
-            // SEARCH RESULT LOGIC: Filters live, but Enter opens the Armory in a new tab.
-            searchInput.addEventListener('keydown', (e) => {
+            // Opens results in new tab if Enter is pressed
+            searchInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
-                    window.open('assets.html', '_blank');
+                    window.open('assets.html?search=' + searchInput.value, '_blank');
                 }
             });
 
             searchInput.addEventListener('input', (e) => {
                 const value = e.target.value.toLowerCase();
                 cards.forEach(card => {
-                    const title = card.querySelector('h3')?.innerText.toLowerCase() || "";
-                    const desc = card.querySelector('p')?.innerText.toLowerCase() || "";
+                    const title = card.querySelector('h3').innerText.toLowerCase();
+                    const desc = card.querySelector('p').innerText.toLowerCase();
                     card.style.display = (title.includes(value) || desc.includes(value)) ? "block" : "none";
                 });
             });
