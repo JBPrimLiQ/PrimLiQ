@@ -4,16 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inquiry | PrimLiQ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --prim-teal: #00cece;
+            --prim-silver: #a8a8a8;
             --dark-bg: #0d0f10;
+            --glass: rgba(255, 255, 255, 0.03);
+            --neon-glow: 0 0 20px rgba(0, 206, 206, 0.4);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        /* --- CUSTOM NEON SCROLLBAR --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--dark-bg); }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 206, 206, 0.3);
+            border-radius: 10px;
+            border: 2px solid var(--dark-bg);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--prim-teal);
+            box-shadow: 0 0 10px var(--prim-teal);
+        }
+
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            scrollbar-width: thin; 
+            scrollbar-color: rgba(0, 206, 206, 0.3) var(--dark-bg); 
         }
 
         body {
@@ -26,84 +45,63 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding-top: 100px; /* Space for sticky nav */
         }
 
-        /* --- Navigation Optimization --- */
+        /* --- Unified Navigation (Matched to Index) --- */
         .top-nav {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            padding: 30px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 10;
+            position: fixed; top: 0; left: 0; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 40px; background: rgba(13, 15, 16, 0.9);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            z-index: 9999; box-sizing: border-box; border-bottom: 1px solid rgba(0, 206, 206, 0.25);
         }
 
         .nav-logo { 
-            font-weight: 900; 
-            letter-spacing: 5px; 
-            color: #fff; 
-            text-decoration: none; 
-            font-size: 1.1rem; 
-            text-shadow: 0 0 10px rgba(0, 206, 206, 0.8), 0 0 20px rgba(0, 206, 206, 0.4);
+            font-weight: 900; letter-spacing: 5px; color: #fff; text-decoration: none; font-size: 1.1rem; 
+            text-shadow: 0 0 10px rgba(0, 206, 206, 0.8);
             transition: 0.3s ease;
         }
+        .nav-logo:hover { color: var(--prim-teal); }
 
-        .nav-logo:hover {
-            color: var(--prim-teal);
-            text-shadow: 0 0 15px rgba(0, 206, 206, 1), 0 0 30px rgba(0, 206, 206, 0.6);
-        }
-
-        .nav-search-container {
-            flex-grow: 1;
-            max-width: 300px;
-            margin: 0 40px;
-        }
-
+        .nav-search-container { position: relative; flex-grow: 1; max-width: 400px; margin: 0 30px; }
         .nav-search-input {
-            width: 100%;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 8px 15px;
-            color: #fff;
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            outline: none;
+            width: 100%; padding: 8px 15px 8px 35px; background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px;
+            color: #fff; font-size: 0.8rem; transition: all 0.3s ease; outline: none;
+        }
+        .nav-search-input:focus { border-color: var(--prim-teal); }
+        
+        .nav-search-container::before {
+            content: '\f002'; font-family: "Font Awesome 5 Free"; font-weight: 900;
+            position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+            color: var(--prim-teal); font-size: 0.8rem; opacity: 0.6;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 25px;
-        }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-item { color: var(--prim-silver); text-decoration: none; text-transform: uppercase; font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px; transition: 0.3s; padding: 6px 10px; }
+        .nav-item:hover { color: var(--prim-teal); text-shadow: var(--neon-glow); }
+        .nav-item.highlight { border: 1px solid rgba(0, 206, 206, 0.3); background: rgba(0, 206, 206, 0.05); border-radius: 4px; }
 
-        .nav-item {
-            color: #888;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            transition: 0.3s;
-        }
-
-        .nav-item:hover, .nav-item.highlight {
-            color: #fff;
-        }
-
-        /* --- Container & Form --- */
+        /* --- Inquiry Container --- */
         #contact-container {
             padding: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-left: 3px solid var(--prim-teal);
             background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             max-width: 500px;
-            width: 100%;
+            width: 90%;
             text-align: center;
             box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            margin-top: 60px;
+            margin: 40px 0;
+            animation: formFade 0.8s ease-out;
+        }
+
+        @keyframes formFade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         h2 {
@@ -111,36 +109,39 @@
             letter-spacing: 4px;
             text-transform: uppercase;
             margin-bottom: 30px;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
         }
 
         .input-field {
             width: 100%;
             padding: 15px;
             margin-bottom: 15px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 4px;
             color: #fff;
             font-family: inherit;
-            transition: border 0.3s ease;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
         }
 
         .input-field:focus {
             outline: none;
             border-color: var(--prim-teal);
+            background: rgba(0, 206, 206, 0.02);
         }
 
         .submit-btn {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(135deg, #fff 0%, #a8a8a8 100%);
+            background: linear-gradient(135deg, #fff 0%, var(--prim-silver) 100%);
             color: #000;
             border: none;
             border-radius: 4px;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 2px;
+            font-size: 0.8rem;
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 10px;
@@ -150,46 +151,47 @@
             background: var(--prim-teal);
             color: #fff;
             box-shadow: 0 0 20px rgba(0, 206, 206, 0.4);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
         }
 
         .submit-btn:disabled {
             cursor: wait;
-            opacity: 0.7;
+            opacity: 0.5;
         }
 
         .back-btn {
             display: inline-block;
             margin-top: 30px;
-            color: #666;
+            color: #555;
             text-decoration: none;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             transition: 0.3s;
         }
 
-        .back-btn:hover {
-            color: var(--prim-teal);
-        }
+        .back-btn:hover { color: var(--prim-teal); }
 
         textarea { resize: none; }
+
+        @media (max-width: 768px) {
+            .nav-search-container { display: none; }
+            #contact-container { padding: 30px 20px; }
+        }
     </style>
 </head>
 <body>
 
     <nav class="top-nav">
         <a href="index.html" class="nav-logo">PrimLiQ</a>
-        
-    <div class="nav-search-container">
-        <input type="text" class="nav-search-input" placeholder="SEARCH DATABASE..." id="armorySearch">
-    </div>
-
-    <div class="nav-links">
-        <a href="about.html" class="nav-item">About</a>
-        <a href="assets.html" class="nav-item highlight">Armory</a>
-        <a href="contact.html" class="nav-item">Contact</a>
-    </div>
+        <div class="nav-search-container">
+            <input type="text" class="nav-search-input" placeholder="SEARCH DATABASE..." id="armorySearch">
+        </div>
+        <div class="nav-links">
+            <a href="about.html" class="nav-item">About</a>
+            <a href="assets.html" class="nav-item">Armory</a>
+            <a href="contact.html" class="nav-item highlight">Contact</a>
+        </div>
     </nav>
 
     <div id="contact-container">
@@ -202,22 +204,23 @@
             <button type="submit" class="submit-btn" id="submit-btn">SUBMIT TO PRIMLIQ</button>
         </form>
 
-        <a href="#" onclick="window.history.back(); return false;" class="back-btn">← PREVIOUS PAGE</a>
+        <a href="#" onclick="window.history.back(); return false;" class="back-btn">← PREVIOUS INTERFACE</a>
+    </div>
+
+    <div style="margin-top: 20px; margin-bottom: 30px; font-size: 0.6rem; color: #333; letter-spacing: 4px;">
+        © 2026 PRIMLIQ | SECURE TRANSMISSION CHANNEL
     </div>
 
     <script>
         const form = document.getElementById("primliq-form");
         const container = document.getElementById("contact-container");
 
+        // Handle Form Submission
         form.onsubmit = async (e) => {
             e.preventDefault();
             const btn = document.getElementById("submit-btn");
             
-            // UI Feedback
-            const originalText = btn.innerText;
             btn.innerText = "TRANSMITTING...";
-            btn.style.background = "#333";
-            btn.style.color = "#888";
             btn.disabled = true;
 
             try {
@@ -230,20 +233,28 @@
 
                 if (response.ok) {
                     container.innerHTML = `
-                        <h2 style="color: var(--prim-teal); letter-spacing: 5px;">MISSION RECEIVED</h2>
-                        <p style="color: #888; line-height: 1.6; margin-bottom: 30px;">Your inquiry has been successfully transmitted.<br>Expect strategic engagement shortly.</p>
+                        <h2 style="color: var(--prim-teal); letter-spacing: 5px;">TRANSMISSION SUCCESS</h2>
+                        <p style="color: #888; line-height: 1.8; margin-bottom: 30px;">
+                            Your data has been logged in our secure database.<br>
+                            Engagement protocols initiated.
+                        </p>
                         <button onclick="window.location.href='index.html'" class="submit-btn">RETURN TO BASE</button>
                     `;
                 } else {
                     throw new Error("Transmission failed");
                 }
             } catch (err) {
-                btn.innerText = "ERROR - RETRY";
-                btn.style.background = "linear-gradient(135deg, #fff 0%, #a8a8a8 100%)";
-                btn.style.color = "#000";
+                btn.innerText = "LINK FAILURE - RETRY";
                 btn.disabled = false;
             }
         };
+
+        // Navigation Search Logic
+        document.getElementById('armorySearch').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                window.location.href = 'assets.html?search=' + encodeURIComponent(e.target.value);
+            }
+        });
     </script>
 </body>
 </html>
