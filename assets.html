@@ -10,18 +10,34 @@
             --prim-teal: #00cece;
             --prim-silver: #a8a8a8;
             --dark-bg: #0d0f10;
+            --glass: rgba(255, 255, 255, 0.03);
+            --neon-glow: 0 0 20px rgba(0, 206, 206, 0.4);
         }
+
+        /* --- CUSTOM NEON SCROLLBAR --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--dark-bg); }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 206, 206, 0.3);
+            border-radius: 10px;
+            border: 2px solid var(--dark-bg);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--prim-teal);
+            box-shadow: 0 0 10px var(--prim-teal);
+        }
+        * { scrollbar-width: thin; scrollbar-color: rgba(0, 206, 206, 0.3) var(--dark-bg); box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             background-color: var(--dark-bg);
             background-image: radial-gradient(circle at 50% 20%, #1a1e22 0%, #0d0f10 100%);
             color: #d1d1d1;
             font-family: 'Segoe UI', Roboto, sans-serif;
-            margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 60px 20px;
+            min-height: 100vh;
+            padding-top: 100px;
             animation: fadeIn 1.2s ease-out;
         }
 
@@ -30,11 +46,47 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* --- Unified Navigation (Matched to Index) --- */
+        .top-nav {
+            position: fixed; top: 0; left: 0; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 40px; background: rgba(13, 15, 16, 0.9);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            z-index: 9999; box-sizing: border-box; border-bottom: 1px solid rgba(0, 206, 206, 0.25);
+        }
+
+        .nav-logo { 
+            font-weight: 900; letter-spacing: 5px; color: #fff; text-decoration: none; font-size: 1.1rem; 
+            text-shadow: 0 0 10px rgba(0, 206, 206, 0.8);
+            transition: 0.3s ease;
+        }
+        .nav-logo:hover { color: var(--prim-teal); }
+
+        .nav-search-container { position: relative; flex-grow: 1; max-width: 400px; margin: 0 30px; }
+        .nav-search-input {
+            width: 100%; padding: 8px 15px 8px 35px; background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px;
+            color: #fff; font-size: 0.8rem; transition: all 0.3s ease; outline: none;
+        }
+        .nav-search-input:focus { border-color: var(--prim-teal); box-shadow: 0 0 10px rgba(0, 206, 206, 0.2); }
+        
+        .nav-search-container::before {
+            content: '\f002'; font-family: "Font Awesome 5 Free"; font-weight: 900;
+            position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+            color: var(--prim-teal); font-size: 0.8rem; opacity: 0.6;
+        }
+
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-item { color: var(--prim-silver); text-decoration: none; text-transform: uppercase; font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px; transition: 0.3s; padding: 6px 10px; }
+        .nav-item:hover { color: var(--prim-teal); text-shadow: var(--neon-glow); }
+        .nav-item.active, .nav-item.highlight { border: 1px solid rgba(0, 206, 206, 0.3); background: rgba(0, 206, 206, 0.05); border-radius: 4px; color: #fff; }
+
+        /* --- Armory Content --- */
         .section-title {
             text-transform: uppercase;
             letter-spacing: 5px;
             font-size: 0.8rem;
-            margin: 20px 0 40px 0;
+            margin: 40px 0;
             color: var(--prim-silver);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             width: 100%;
@@ -45,27 +97,30 @@
 
         .armory-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
             max-width: 900px;
-            width: 100%;
+            width: 95%;
+            margin-bottom: 60px;
         }
 
         .asset-card {
-            padding: 20px;
+            padding: 25px;
             border: 1px solid rgba(255, 255, 255, 0.05);
             background: rgba(255, 255, 255, 0.01);
             border-radius: 16px;
             transition: all 0.4s ease;
             position: relative;
             backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
         }
 
         .asset-card:hover {
             border-color: var(--prim-teal);
-            transform: translateY(-5px);
-            background: rgba(0, 206, 206, 0.02);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            transform: translateY(-8px);
+            background: rgba(0, 206, 206, 0.03);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
         .preview-img {
@@ -73,24 +128,28 @@
             border-radius: 8px;
             margin-bottom: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            filter: grayscale(0.3);
+            transition: 0.4s;
         }
+        .asset-card:hover .preview-img { filter: grayscale(0); }
 
-        h2 { color: #fff; font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase; margin: 10px 0; }
+        h2 { color: #fff; font-size: 1.1rem; letter-spacing: 1px; text-transform: uppercase; margin: 10px 0; line-height: 1.4; }
         
         .price-tag {
             display: inline-block;
             color: var(--prim-teal);
             font-weight: 800;
             margin-bottom: 15px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            text-shadow: 0 0 10px rgba(0, 206, 206, 0.3);
         }
 
-        .description { font-size: 0.9rem; color: #888; line-height: 1.6; margin-bottom: 25px; }
+        .description { font-size: 0.85rem; color: #888; line-height: 1.7; margin-bottom: 25px; flex-grow: 1; }
 
         .btn {
             display: block;
             text-align: center;
-            padding: 12px;
+            padding: 14px;
             background: linear-gradient(135deg, #fff 0%, var(--prim-silver) 100%);
             color: #000 !important;
             text-decoration: none;
@@ -98,55 +157,49 @@
             border-radius: 4px;
             transition: 0.3s;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.8rem;
+            letter-spacing: 2px;
+            font-size: 0.75rem;
         }
 
-        .btn:hover { background: var(--prim-teal); color: #fff !important; }
+        .btn:hover { 
+            background: var(--prim-teal); 
+            color: #fff !important; 
+            box-shadow: 0 0 15px var(--prim-teal);
+        }
 
         .back-home {
-            margin-top: 60px;
+            margin-top: 20px;
             color: #555;
             text-decoration: none;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .back-home:hover { color: var(--prim-teal); }
+        .back-home:hover { color: var(--prim-teal); transform: translateX(-5px); }
 
-        .nav-logo { 
-        font-weight: 900; 
-        letter-spacing: 5px; 
-        color: #fff; 
-        text-decoration: none; 
-        font-size: 1.1rem; 
-        flex-shrink: 0; 
-        text-shadow: 0 0 10px rgba(0, 206, 206, 0.8), 0 0 20px rgba(0, 206, 206, 0.4);
-        transition: 0.3s ease;
+        @media (max-width: 768px) {
+            .nav-search-container { display: none; }
+            .top-nav { padding: 12px 20px; }
+            .armory-grid { grid-template-columns: 1fr; }
         }
-
-.nav-logo:hover {
-    color: var(--prim-teal);
-    text-shadow: 0 0 15px rgba(0, 206, 206, 1), 0 0 30px rgba(0, 206, 206, 0.6);
-}
     </style>
 </head>
 <body>
 
-       <nav class="top-nav">
-        <!-- The Home Button -->
+    <nav class="top-nav">
         <a href="index.html" class="nav-logo">PrimLiQ</a>
-    
         <div class="nav-search-container">
-            <input type="text" class="nav-search-input" placeholder="SEARCH ASSETS..." id="armorySearch">
+            <input type="text" class="nav-search-input" placeholder="SEARCH DATABASE..." id="armorySearch">
         </div>
-
         <div class="nav-links">
-            <a href="about.html" class="nav-item" target="_blank" rel="noopener noreferrer">About</a>
-            <a href="assets.html" class="nav-item highlight" target="_blank" rel="noopener noreferrer">Armory</a>
-            <a href="contact.html" class="nav-item" target="_blank" rel="noopener noreferrer">Contact</a>
+            <a href="about.html" class="nav-item">About</a>
+            <a href="assets.html" class="nav-item active">Armory</a>
+            <a href="contact.html" class="nav-item">Contact</a>
         </div>
     </nav>
 
@@ -154,39 +207,46 @@
 
     <div class="armory-grid">
         <!-- PRIM ZEN: LEVEL UP -->
-        <div class="asset-card" style="border-color: rgba(0, 206, 206, 0.3); box-shadow: 0 0 20px rgba(0, 206, 206, 0.05);">
-            <!-- Update the src to your new panoramic space image -->
+        <div class="asset-card" style="border-color: rgba(0, 206, 206, 0.3);">
             <img src="prim-zen-space.png" alt="Prim Zen: Level Up Your Digital Life" class="preview-img">
-            
-            <span style="font-size: 0.6rem; color: var(--prim-teal); font-weight: bold; letter-spacing: 2px;">FEATURED QUEST</span>
-            
-            <h2 style="display: flex; align-items: center; gap: 8px;">
-                💎 Prim Zen: Level Up Your Digital Life ⚔️
-            </h2>
-            
+            <span style="font-size: 0.55rem; color: var(--prim-teal); font-weight: bold; letter-spacing: 3px; text-transform: uppercase;">// Featured Quest</span>
+            <h2>Prim Zen: Level Up Your Digital Life</h2>
             <span class="price-tag">$17.00</span>
-            
             <p class="description">
-                Enter the Prim Zen Digital Kingdom. A hero's journey to slay subscription ghosts, conquer digital chaos, and reclaim your mental landscape.
+                Enter the Prim Zen Digital Kingdom. A hero's journey designed to slay subscription ghosts, conquer digital chaos, and reclaim your mental landscape through bespoke Notion architecture.
             </p>
-            
-            <a href="https://payhip.com/b/gOAqf" target="_blank" class="btn">DEPLOY ACCESS</a>
+            <a href="https://payhip.com/b/gOAqf" target="_blank" class="btn">Deploy Access</a>
         </div>
 
         <!-- COMING SOON SLOT -->
-        <div class="asset-card" style="opacity: 0.5;">
-            <div style="height: 180px; display:flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:8px; margin-bottom:20px; border: 1px dashed #333;">
-                <i class="fas fa-lock fa-2x" style="color:#444;"></i>
+        <div class="asset-card" style="opacity: 0.6;">
+            <div style="height: 180px; display:flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.02); border-radius:8px; margin-bottom:20px; border: 1px dashed rgba(255,255,255,0.1);">
+                <i class="fas fa-lock fa-2x" style="color:#333;"></i>
             </div>
             <h2>Next Intellect Drop</h2>
-            <p class="description">Advanced automation scripts and bespoke Notion builds. Currently in development.</p>
-            <span class="btn" style="background: #222; color: #444 !important; cursor: not-allowed;">ENCRYPTED</span>
+            <span class="price-tag" style="color: #444;">--.--</span>
+            <p class="description">Advanced automation scripts and high-frequency productivity modules. Currently undergoing encryption for secure delivery.</p>
+            <span class="btn" style="background: #1a1a1a; color: #444 !important; cursor: not-allowed; border: 1px solid #333;">Encrypted</span>
         </div>
     </div>
 
     <a href="index.html" class="back-home"><i class="fas fa-chevron-left"></i> Return to Lab</a>
 
-    <div style="margin-top: 40px; font-size: 0.6rem; color: #333; letter-spacing: 4px;">© 2026 PRIMLIQ | ASSET DELIVERY</div>
+    <div style="margin-top: 60px; margin-bottom: 30px; font-size: 0.6rem; color: #333; letter-spacing: 4px;">© 2026 PRIMLIQ | ASSET DELIVERY | SECURE CONNECTION ACTIVE</div>
 
+    <script>
+        // Search functionality matching index.html logic
+        document.getElementById('armorySearch').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const term = e.target.value.toLowerCase();
+                // Basic local search simulation
+                const cards = document.querySelectorAll('.asset-card');
+                cards.forEach(card => {
+                    const text = card.innerText.toLowerCase();
+                    card.style.display = text.includes(term) ? 'flex' : 'none';
+                });
+            }
+        });
+    </script>
 </body>
 </html>
