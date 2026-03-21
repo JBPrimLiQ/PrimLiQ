@@ -41,26 +41,6 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
-    /* --- MASCOT (STATIONARY VIDEO) --- */
-    .mascot-container {
-        position: fixed;
-        bottom: 30px;
-        left: 40px;
-        z-index: 10000;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        pointer-events: none;
-        transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-
-    .nav-mascot {
-        width: 120px;
-        filter: drop-shadow(var(--neon-glow));
-        object-fit: contain;
-        /* Animation removed to keep mascot stationary */
-    }
-
     /* --- LOGO & CARD --- */
     .branding-card {
         position: relative;
@@ -184,14 +164,11 @@
     /* --- RESPONSIVE --- */
     @media (max-width: 1024px) { 
         .side-hud { display: none; } 
-        .mascot-container { left: 20px; bottom: 20px; }
-        .nav-mascot { width: 80px; }
     }
     @media (max-width: 768px) {
         .nav-search-container { display: none; }
         .top-nav { padding: 15px 20px; }
         .logo-img { width: 240px; }
-        .mascot-container { display: none; }
     }
 
     /* --- SCROLLBAR --- */
@@ -202,13 +179,6 @@
     </style>
 </head>
 <body>
-
-    <!-- MASCOT COMPANION (Looping Video Only) -->
-    <div class="mascot-container">
-        <video autoplay loop muted playsinline class="nav-mascot">
-            <source src="mascot.mp4" type="video/mp4">
-        </video>
-    </div>
 
     <div class="side-hud hud-left">
         <div class="hud-line">System.Status: Active</div>
@@ -308,12 +278,10 @@
         document.addEventListener("DOMContentLoaded", () => {
             const actionBtn = document.querySelector("#primal-action-btn");
             const portalSection = document.querySelector("#main-portal");
-            const mascotContainer = document.querySelector(".mascot-container");
             
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     actionBtn.classList.toggle("is-visible", !entry.isIntersecting);
-                    mascotContainer.style.opacity = entry.isIntersecting ? "1" : "0.7";
                 });
             }, { threshold: 0.1 });
             observer.observe(portalSection);
